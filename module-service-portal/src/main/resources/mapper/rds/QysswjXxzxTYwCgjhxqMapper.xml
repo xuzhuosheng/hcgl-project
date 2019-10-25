@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.mapper.QysswjXxzxTYwCgjhxqMapper">
+
+    <resultMap type="com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.model.QysswjXxzxTYwCgjhxq" id="QysswjXxzxTYwCgjhxqMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="cgjhid" column="cgjhid" jdbcType="INTEGER"/>
+        <result property="lxmc" column="lxmc" jdbcType="VARCHAR"/>
+        <result property="ppmc" column="ppmc" jdbcType="VARCHAR"/>
+        <result property="xhmc" column="xhmc" jdbcType="VARCHAR"/>
+        <result property="lbmc" column="lbmc" jdbcType="VARCHAR"/>
+        <result property="cgsl" column="cgsl" jdbcType="INTEGER"/>
+        <result property="ysdj" column="ysdj" jdbcType="OTHER"/>
+        <result property="zt" column="zt" jdbcType="VARCHAR"/>
+        <result property="bz" column="bz" jdbcType="VARCHAR"/>
+    </resultMap>
+
+
+
+    <insert id="insertCgjhxq" >
+        insert into  qysswj_xxzx_t_yw_cgjhxq(
+        cgjhid, lxmc, ppmc, xhmc, lbmc, cgsl, ysdj, zt)
+        values
+        (#{cgjhid}, #{lxmc}, #{ppmc}, #{xhmc}, #{lbmc}, #{cgsl}, #{ysdj}, '1')
+    </insert>
+
+
+
+    <!--&lt;!&ndash;查询单个&ndash;&gt;-->
+    <!--<select id="queryById" resultMap="QysswjXxzxTYwCgjhxqMap">-->
+        <!--select-->
+          <!--id, cgjhid, lxmc, ppmc, xhmc, lbmc, cgsl, ysdj, zt, bz-->
+        <!--from aly_kfkjpx_test.qysswj_xxzx_t_yw_cgjhxq-->
+        <!--where id = #{id}-->
+    <!--</select>-->
+
+    <!--&lt;!&ndash;查询指定行数据&ndash;&gt;-->
+    <!--<select id="queryAllByLimit" resultMap="QysswjXxzxTYwCgjhxqMap">-->
+        <!--select-->
+          <!--id, cgjhid, lxmc, ppmc, xhmc, lbmc, cgsl, ysdj, zt, bz-->
+        <!--from aly_kfkjpx_test.qysswj_xxzx_t_yw_cgjhxq-->
+        <!--limit #{offset}, #{limit}-->
+    <!--</select>-->
+
+    <!--&lt;!&ndash;通过实体作为筛选条件查询&ndash;&gt;-->
+    <!--<select id="queryAll" resultMap="QysswjXxzxTYwCgjhxqMap">-->
+        <!--select-->
+          <!--id, cgjhid, lxmc, ppmc, xhmc, lbmc, cgsl, ysdj, zt, bz-->
+        <!--from aly_kfkjpx_test.qysswj_xxzx_t_yw_cgjhxq-->
+        <!--<where>-->
+            <!--<if test="id != null">-->
+                <!--and id = #{id}-->
+            <!--</if>-->
+            <!--<if test="cgjhid != null">-->
+                <!--and cgjhid = #{cgjhid}-->
+            <!--</if>-->
+            <!--<if test="lxmc != null and lxmc != ''">-->
+                <!--and lxmc = #{lxmc}-->
+            <!--</if>-->
+            <!--<if test="ppmc != null and ppmc != ''">-->
+                <!--and ppmc = #{ppmc}-->
+            <!--</if>-->
+            <!--<if test="xhmc != null and xhmc != ''">-->
+                <!--and xhmc = #{xhmc}-->
+            <!--</if>-->
+            <!--<if test="lbmc != null and lbmc != ''">-->
+                <!--and lbmc = #{lbmc}-->
+            <!--</if>-->
+            <!--<if test="cgsl != null">-->
+                <!--and cgsl = #{cgsl}-->
+            <!--</if>-->
+            <!--<if test="ysdj != null">-->
+                <!--and ysdj = #{ysdj}-->
+            <!--</if>-->
+            <!--<if test="zt != null and zt != ''">-->
+                <!--and zt = #{zt}-->
+            <!--</if>-->
+            <!--<if test="bz != null and bz != ''">-->
+                <!--and bz = #{bz}-->
+            <!--</if>-->
+        <!--</where>-->
+    <!--</select>-->
+
+    <!--&lt;!&ndash;新增所有列&ndash;&gt;-->
+    <!--<insert id="insert" keyProperty="id" useGeneratedKeys="true">-->
+        <!--insert into aly_kfkjpx_test.qysswj_xxzx_t_yw_cgjhxq(cgjhid, lxmc, ppmc, xhmc, lbmc, cgsl, ysdj, zt, bz)-->
+        <!--values (#{cgjhid}, #{lxmc}, #{ppmc}, #{xhmc}, #{lbmc}, #{cgsl}, #{ysdj}, #{zt}, #{bz})-->
+    <!--</insert>-->
+
+    <!--&lt;!&ndash;通过主键修改数据&ndash;&gt;-->
+    <!--<update id="update">-->
+        <!--update aly_kfkjpx_test.qysswj_xxzx_t_yw_cgjhxq-->
+        <!--<set>-->
+            <!--<if test="cgjhid != null">-->
+                <!--cgjhid = #{cgjhid},-->
+            <!--</if>-->
+            <!--<if test="lxmc != null and lxmc != ''">-->
+                <!--lxmc = #{lxmc},-->
+            <!--</if>-->
+            <!--<if test="ppmc != null and ppmc != ''">-->
+                <!--ppmc = #{ppmc},-->
+            <!--</if>-->
+            <!--<if test="xhmc != null and xhmc != ''">-->
+                <!--xhmc = #{xhmc},-->
+            <!--</if>-->
+            <!--<if test="lbmc != null and lbmc != ''">-->
+                <!--lbmc = #{lbmc},-->
+            <!--</if>-->
+            <!--<if test="cgsl != null">-->
+                <!--cgsl = #{cgsl},-->
+            <!--</if>-->
+            <!--<if test="ysdj != null">-->
+                <!--ysdj = #{ysdj},-->
+            <!--</if>-->
+            <!--<if test="zt != null and zt != ''">-->
+                <!--zt = #{zt},-->
+            <!--</if>-->
+            <!--<if test="bz != null and bz != ''">-->
+                <!--bz = #{bz},-->
+            <!--</if>-->
+        <!--</set>-->
+        <!--where id = #{id}-->
+    <!--</update>-->
+
+    <!--&lt;!&ndash;通过主键删除&ndash;&gt;-->
+    <!--<delete id="deleteById">-->
+        <!--delete from aly_kfkjpx_test.qysswj_xxzx_t_yw_cgjhxq where id = #{id}-->
+    <!--</delete>-->
+
+</mapper>

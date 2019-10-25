@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.mapper.QysswjXxzxTYwXhwhMapper">
+
+    <resultMap type="com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.model.QysswjXxzxTYwXhwh"
+               id="QysswjXxzxTYwXhwhMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="lxid" column="lxid" jdbcType="VARCHAR"/>
+        <result property="lxmc" column="lxmc" jdbcType="VARCHAR"/>
+        <result property="ppid" column="ppid" jdbcType="VARCHAR"/>
+        <result property="ppmc" column="ppmc" jdbcType="VARCHAR"/>
+        <result property="xhmc" column="xhmc" jdbcType="VARCHAR"/>
+        <result property="createtime" column="createtime" jdbcType="OTHER"/>
+        <result property="zt" column="zt" jdbcType="VARCHAR"/>
+        <result property="bz" column="bz" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="selectAllXhwh" resultMap="QysswjXxzxTYwXhwhMap">
+        select
+        lx.id lxid, lx.lxmc lxmc,pp.id ppid,pp.ppmc ppmc,xh.id id,xh.xhmc xhmc,xh.createtime createtime,xh.zt zt,xh.bz
+        bz
+        from qysswj_xxzx_t_yw_lxwh lx
+        left join qysswj_xxzx_t_yw_ppwh pp
+        on lx.id=pp.lxid
+        left join qysswj_xxzx_t_yw_xhwh xh
+        on xh.ppid=pp.id
+        <where>
+            1=1
+            and xh.zt='1'
+            and lx.zt='1'
+            and pp.zt='1'
+            <if test="lxid!=null and lxid!=''">
+                and lx.id=#{lxid}
+            </if>
+            <if test="ppid!=null and ppid!=''">
+                and pp.id=#{ppid}
+            </if>
+            <if test="xhmc!=null and xhmc!=''">
+                and xhmc like '%${xhmc}%'
+            </if>
+        </where>
+        order by xh.createtime desc
+        <!--<if test="pageNum>0">-->
+        <!--limit ${(pageNum-1)*pageSize},${pageNum*pageSize}-->
+        <!--</if>-->
+
+    </select>
+
+
+    <!--根据id获取对象 -->
+    <select id="selectOneById" resultMap="QysswjXxzxTYwXhwhMap">
+        select
+        lx.id lxid, lx.lxmc lxmc,pp.id ppid,pp.ppmc ppmc,xh.id id,xh.xhmc xhmc,xh.createtime createtime,xh.zt zt,xh.bz
+        bz
+        from qysswj_xxzx_t_yw_lxwh lx
+        left join qysswj_xxzx_t_yw_ppwh pp on lx.id=pp.lxid
+        left join qysswj_xxzx_t_yw_xhwh xh on xh.ppid=pp.id
+        <where>
+            1=1
+            and xh.zt='1'
+            and lx.zt='1'
+            and pp.zt='1'
+            <if test="id!=null and id!='' ">
+                and xh.id=#{id}
+            </if>
+        </where>
+
+
+    </select>
+
+
+    <select id="queryCount" resultType="int">
+        select
+        count(*)
+        from qysswj_xxzx_t_yw_lxwh lx
+        left join qysswj_xxzx_t_yw_ppwh pp
+        on lx.id=pp.lxid
+        left join qysswj_xxzx_t_yw_xhwh xh
+        on xh.ppid=pp.id
+        <where>
+            1=1
+            and xh.zt='1'
+            and lx.zt='1'
+            and pp.zt='1'
+        </where>
+
+
+    </select>
+
+
+    <!--新增所有列-->
+    <!--/*keyProperty="id" useGeneratedKeys="true"*/-->
+    <insert id="insertXhwh">
+    insert into  qysswj_xxzx_t_yw_xhwh( ppid, ppmc, xhmc, createtime, zt)
+    values ( #{ppid}, #{ppmc}, #{xhmc}, now(),'1')
+    </insert>
+
+
+    <!--通过主键修改数据-->
+    <update id="updateXhwh">
+        update qysswj_xxzx_t_yw_xhwh
+        <set>
+            <if test="ppid != null and ppid != ''">
+                ppid = #{ppid},
+            </if>
+            <if test="ppmc != null and ppmc != ''">
+                ppmc = #{ppmc},
+            </if>
+            <if test="xhmc != null and xhmc != ''">
+                xhmc = #{xhmc},
+            </if>
+        </set>
+        <where>
+            id = #{id}
+        </where>
+    </update>
+
+
+    <!--&lt;!&ndash;通过主键单个或批量修改数据状态&ndash;&gt;-->
+    <update id="updateXhwhZt">
+        update qysswj_xxzx_t_yw_xhwh
+        <set>
+            zt='0'
+        </set>
+        <where>
+            id in
+            <foreach collection="idList" separator="," open="(" close=")" item="id">
+                #{id}
+            </foreach>
+        </where>
+    </update>
+
+
+    <!--根据id获取对象 -->
+    <select id="selectXhwhListByPpid" resultMap="QysswjXxzxTYwXhwhMap">
+        select
+        lx.id lxid, lx.lxmc lxmc,pp.id ppid,pp.ppmc ppmc,xh.id id,xh.xhmc xhmc,xh.createtime createtime,xh.zt zt,xh.bz
+        bz
+        from qysswj_xxzx_t_yw_lxwh lx
+        left join qysswj_xxzx_t_yw_ppwh pp on lx.id=pp.lxid
+        left join qysswj_xxzx_t_yw_xhwh xh on xh.ppid=pp.id
+        <where>
+            1=1
+            and xh.zt='1'
+            and lx.zt='1'
+            and pp.zt='1'
+            <if test="ppid!=null and ppid!='' ">
+                and xh.ppid=#{ppid}
+            </if>
+        </where>
+
+
+    </select>
+
+
+    <!--&lt;!&ndash;查询单个&ndash;&gt;-->
+    <!--<select id="queryById" resultMap="QysswjXxzxTYwXhwhMap">-->
+    <!--select-->
+    <!--id, lxid, lxmc, ppid, ppmc, xhmc, createtime, zt, bz-->
+    <!--from qysw.qysswj_xxzx_t_yw_xhwh-->
+    <!--where id = #{id}-->
+    <!--</select>-->
+
+    <!--&lt;!&ndash;查询指定行数据&ndash;&gt;-->
+    <!--<select id="queryAllByLimit" resultMap="QysswjXxzxTYwXhwhMap">-->
+    <!--select-->
+    <!--id, lxid, lxmc, ppid, ppmc, xhmc, createtime, zt, bz-->
+    <!--from qysw.qysswj_xxzx_t_yw_xhwh-->
+    <!--limit #{offset}, #{limit}-->
+    <!--</select>-->
+
+    <!--&lt;!&ndash;通过实体作为筛选条件查询&ndash;&gt;-->
+    <!--<select id="queryAll" resultMap="QysswjXxzxTYwXhwhMap">-->
+    <!--select-->
+    <!--id, lxid, lxmc, ppid, ppmc, xhmc, createtime, zt, bz-->
+    <!--from qysw.qysswj_xxzx_t_yw_xhwh-->
+    <!--<where>-->
+    <!--<if test="id != null">-->
+    <!--and id = #{id}-->
+    <!--</if>-->
+    <!--<if test="lxid != null and lxid != ''">-->
+    <!--and lxid = #{lxid}-->
+    <!--</if>-->
+    <!--<if test="lxmc != null and lxmc != ''">-->
+    <!--and lxmc = #{lxmc}-->
+    <!--</if>-->
+    <!--<if test="ppid != null and ppid != ''">-->
+    <!--and ppid = #{ppid}-->
+    <!--</if>-->
+    <!--<if test="ppmc != null and ppmc != ''">-->
+    <!--and ppmc = #{ppmc}-->
+    <!--</if>-->
+    <!--<if test="xhmc != null and xhmc != ''">-->
+    <!--and xhmc = #{xhmc}-->
+    <!--</if>-->
+    <!--<if test="createtime != null">-->
+    <!--and createtime = #{createtime}-->
+    <!--</if>-->
+    <!--<if test="zt != null and zt != ''">-->
+    <!--and zt = #{zt}-->
+    <!--</if>-->
+    <!--<if test="bz != null and bz != ''">-->
+    <!--and bz = #{bz}-->
+    <!--</if>-->
+    <!--</where>-->
+    <!--</select>-->
+
+    <!--&lt;!&ndash;新增所有列&ndash;&gt;-->
+    <!--<insert id="insert" keyProperty="id" useGeneratedKeys="true">-->
+    <!--insert into qysw.qysswj_xxzx_t_yw_xhwh(lxid, lxmc, ppid, ppmc, xhmc, createtime, zt, bz)-->
+    <!--values (#{lxid}, #{lxmc}, #{ppid}, #{ppmc}, #{xhmc}, #{createtime}, #{zt}, #{bz})-->
+    <!--</insert>-->
+
+    <!--&lt;!&ndash;通过主键修改数据&ndash;&gt;-->
+    <!--<update id="update">-->
+    <!--update qysw.qysswj_xxzx_t_yw_xhwh-->
+    <!--<set>-->
+    <!--<if test="lxid != null and lxid != ''">-->
+    <!--lxid = #{lxid},-->
+    <!--</if>-->
+    <!--<if test="lxmc != null and lxmc != ''">-->
+    <!--lxmc = #{lxmc},-->
+    <!--</if>-->
+    <!--<if test="ppid != null and ppid != ''">-->
+    <!--ppid = #{ppid},-->
+    <!--</if>-->
+    <!--<if test="ppmc != null and ppmc != ''">-->
+    <!--ppmc = #{ppmc},-->
+    <!--</if>-->
+    <!--<if test="xhmc != null and xhmc != ''">-->
+    <!--xhmc = #{xhmc},-->
+    <!--</if>-->
+    <!--<if test="createtime != null">-->
+    <!--createtime = #{createtime},-->
+    <!--</if>-->
+    <!--<if test="zt != null and zt != ''">-->
+    <!--zt = #{zt},-->
+    <!--</if>-->
+    <!--<if test="bz != null and bz != ''">-->
+    <!--bz = #{bz},-->
+    <!--</if>-->
+    <!--</set>-->
+    <!--where id = #{id}-->
+    <!--</update>-->
+
+    <!--&lt;!&ndash;通过主键删除&ndash;&gt;-->
+    <!--<delete id="deleteById">-->
+    <!--delete from qysw.qysswj_xxzx_t_yw_xhwh where id = #{id}-->
+    <!--</delete>-->
+
+</mapper>

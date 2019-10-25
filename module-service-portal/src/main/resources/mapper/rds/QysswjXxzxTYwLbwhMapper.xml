@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.mapper.QysswjXxzxTYwLbwhMapper">
+
+    <resultMap type="com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.model.QysswjXxzxTYwLbwh"
+               id="QysswjXxzxTYwLbwhMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="lbmc" column="lbmc" jdbcType="VARCHAR"/>
+
+        <result property="lxid" column="lxid" jdbcType="VARCHAR"/>
+        <result property="lxmc" column="lxmc" jdbcType="VARCHAR"/>
+        <result property="ppid" column="ppid" jdbcType="VARCHAR"/>
+        <result property="ppmc" column="ppmc" jdbcType="VARCHAR"/>
+
+        <result property="ysdj" column="ysdj" jdbcType="VARCHAR"/>
+        <result property="kcl" column="kcl" jdbcType="INTEGER"/>
+        <result property="xhid" column="xhid" jdbcType="VARCHAR"/>
+        <result property="xhmc" column="xhmc" jdbcType="VARCHAR"/>
+        <result property="createtime" column="createtime" jdbcType="OTHER"/>
+        <result property="zt" column="zt" jdbcType="VARCHAR"/>
+        <result property="bz" column="bz" jdbcType="VARCHAR"/>
+        <result property="cgsl" column="cgsl" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--&lt;!&ndash;查询单个&ndash;&gt;-->
+    <!--<select id="queryById" resultMap="QysswjXxzxTYwLbwhMap">-->
+    <!--select-->
+    <!--id, lbmc, ysdj, kcl, xhid, xhmc, createtime, zt, bz-->
+    <!--from qysw.qysswj_xxzx_t_yw_lbwh-->
+    <!--where id = #{id}-->
+    <!--</select>-->
+
+    <!--查询指定行数据-->
+    <select id="selectAllYwLbwhList" resultMap="QysswjXxzxTYwLbwhMap">
+        select
+        lx.id lxid,lx.lxmc lxmc,pp.id ppid,pp.ppmc ppmc,xh.id xhid,xh.xhmc xhmc,
+        lb.id , lb.lbmc, lb.ysdj, lb.kcl,
+        lb.createtime,
+        lb.zt, lb.bz
+        from qysswj_xxzx_t_yw_lxwh lx
+        left join qysswj_xxzx_t_yw_ppwh pp on lx.id=pp.lxid
+        left join qysswj_xxzx_t_yw_xhwh xh on pp.id=xh.ppid
+        left join qysswj_xxzx_t_yw_lbwh lb on xh.id=lb.xhid
+        <where>
+            lx.zt='1'
+            and pp.zt='1'
+            and xh.zt='1'
+            and lb.zt='1'
+            <if test="lxid!=null and lxid!='' ">
+                and lx.id=#{lxid}
+            </if>
+            <if test="ppid!=null and ppid!='' ">
+                and pp.id=#{ppid}
+            </if>
+            <if test="xhid!=null and xhid!='' ">
+                and xh.id=#{xhid}
+            </if>
+            <if test="kcl!=null  ">
+                and lb.kcl=#{kcl}
+            </if>
+            <if test="lbmc!=null and lbmc!='' ">
+                and lb.lbmc like '%${lbmc}%'
+            </if>
+
+        </where>
+        order by lb.createtime desc
+        <!--<if test="pageNum>0">-->
+        <!--limit ${(pageNum-1)*pageSize},${pageNum*pageSize}-->
+        <!--</if>-->
+    </select>
+
+    <select id="queryCount" resultType="int">
+        select
+        count(*)
+        from qysswj_xxzx_t_yw_lxwh lx
+        left join qysswj_xxzx_t_yw_ppwh pp on lx.id=pp.lxid
+        left join qysswj_xxzx_t_yw_xhwh xh on pp.id=xh.ppid
+        left join qysswj_xxzx_t_yw_lbwh lb on xh.id=lb.xhid
+        <where>
+            lx.zt='1'
+            and pp.zt='1'
+            and xh.zt='1'
+            and lb.zt='1'
+        </where>
+
+    </select>
+
+
+    <!--新增所有列-->
+    <insert id="insertYwLbwh">
+        insert into  qysswj_xxzx_t_yw_lbwh(lbmc, ysdj, kcl, xhid, xhmc, createtime, zt)
+        values (#{lbmc}, #{ysdj}, #{kcl}, #{xhid}, #{xhmc}, now(), '1')
+    </insert>
+
+    <!--&lt;!&ndash;通过主键修改数据&ndash;&gt;-->
+    <update id="updateYwLbwh">
+        update qysswj_xxzx_t_yw_lbwh
+        <set>
+            <if test="lbmc != null and lbmc != ''">
+                lbmc = #{lbmc},
+            </if>
+            <if test="ysdj != null ">
+                ysdj = #{ysdj},
+            </if>
+            <if test="kcl != null  ">
+                kcl = #{kcl},
+            </if>
+            <if test="xhid != null and xhid != ''">
+                xhid = #{xhid},
+            </if>
+            <if test="xhmc != null and xhmc != ''">
+                xhmc = #{xhmc},
+            </if>
+            <if test="fz != null ">
+                fz = #{fz},
+            </if>
+
+        </set>
+        where id = #{id}
+    </update>
+
+
+    <select id="queryLbwhListAuto" resultMap="QysswjXxzxTYwLbwhMap">
+        select
+        lx.id lxid,lx.lxmc lxmc,pp.id ppid,pp.ppmc ppmc,xh.id xhid,xh.xhmc xhmc,
+        lb.id , lb.lbmc, lb.ysdj, lb.kcl,
+        lb.createtime,
+        lb.zt, lb.bz,
+        0 cgsl
+        from qysswj_xxzx_t_yw_lxwh lx
+        left join qysswj_xxzx_t_yw_ppwh pp on lx.id=pp.lxid
+        left join qysswj_xxzx_t_yw_xhwh xh on pp.id=xh.ppid
+        left join qysswj_xxzx_t_yw_lbwh lb on xh.id=lb.xhid
+        <where>
+            lx.zt='1'
+            and pp.zt='1'
+            and xh.zt='1'
+            and lb.zt='1'
+            and lb.kcl &lt;= lb.fz
+        </where>
+    </select>
+
+
+    <select id="selectYwLbwhById" resultMap="QysswjXxzxTYwLbwhMap">
+        select
+        lx.id lxid,lx.lxmc lxmc,pp.id ppid,pp.ppmc ppmc,xh.id xhid,xh.xhmc xhmc,
+        lb.id , lb.lbmc, lb.ysdj, lb.kcl,
+        lb.createtime,
+        lb.zt, lb.bz,
+        0 cgsl
+        from qysswj_xxzx_t_yw_lxwh lx
+        left join qysswj_xxzx_t_yw_ppwh pp on lx.id=pp.lxid
+        left join qysswj_xxzx_t_yw_xhwh xh on pp.id=xh.ppid
+        left join qysswj_xxzx_t_yw_lbwh lb on xh.id=lb.xhid
+        <where>
+            lx.zt='1'
+            and pp.zt='1'
+            and xh.zt='1'
+            and lb.zt='1'
+            <if test="id!=null and id!=''">
+                and lb.id=#{id}
+            </if>
+        </where>
+
+    </select>
+</mapper>

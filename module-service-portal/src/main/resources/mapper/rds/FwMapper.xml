@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.mapper.FwMapper">
+  <resultMap id="BaseResultMap" type="com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.model.Fw">
+    <!--
+      @MBG Generated
+    -->
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="FWMC" jdbcType="VARCHAR" property="fwmc" />
+    <result column="FWMS" jdbcType="VARCHAR" property="fwms" />
+    <result column="FWFL_ID" jdbcType="VARCHAR" property="fwflId" />
+    <result column="LRRQ" jdbcType="TIMESTAMP" property="lrrq" />
+    <result column="XGRQ" jdbcType="TIMESTAMP" property="xgrq" />
+    <result column="YXBZ" jdbcType="CHAR" property="yxbz" />
+    <result column="SCBZ" jdbcType="CHAR" property="scbz" />
+    <result column="ICON_ID" jdbcType="VARCHAR" property="iconId" />
+    <result column="URL" jdbcType="VARCHAR" property="url" />
+    <result column="XH" jdbcType="DECIMAL" property="xh" />
+    <result column="API_URL" jdbcType="VARCHAR" property="apiUrl" />
+    <result column="PCH" jdbcType="VARCHAR" property="pch" />
+    <result column="zssx" jdbcType="INTEGER" property="zssx" />
+  </resultMap>
+  <sql id="Example_Where_Clause">selectByExample
+    <!--
+      @MBG Generated
+    -->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--
+      @MBG Generated
+    -->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--
+      @MBG Generated
+    -->
+    ID, FWMC, FWMS, FWFL_ID, LRRQ, XGRQ, YXBZ, SCBZ, ICON_ID, URL, XH, API_URL, PCH,
+    zssx
+  </sql>
+  <select id="selectByExample" parameterType="com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.model.FwExample" resultMap="BaseResultMap">
+    <!--
+      @MBG Generated
+    -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_alyzcfw_fw
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--
+      @MBG Generated
+    -->
+    select
+    <include refid="Base_Column_List" />
+    from t_alyzcfw_fw
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--
+      @MBG Generated
+    -->
+    delete from t_alyzcfw_fw
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.model.FwExample">
+    <!--
+      @MBG Generated
+    -->
+    delete from t_alyzcfw_fw
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.model.Fw">
+    <!--
+      @MBG Generated
+    -->
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.String">
+       select replace(uuid(),'-','')
+    </selectKey>
+    insert into t_alyzcfw_fw (ID, FWMC, FWMS,
+      FWFL_ID, LRRQ, XGRQ,
+      YXBZ, SCBZ, ICON_ID, URL,
+      XH, API_URL, PCH, zssx
+      )
+    values (#{id,jdbcType=VARCHAR}, #{fwmc,jdbcType=VARCHAR}, #{fwms,jdbcType=VARCHAR},
+      #{fwflId,jdbcType=VARCHAR}, #{lrrq,jdbcType=TIMESTAMP}, #{xgrq,jdbcType=TIMESTAMP},
+      #{yxbz,jdbcType=CHAR}, #{scbz,jdbcType=CHAR}, #{iconId,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR},
+      #{xh,jdbcType=DECIMAL}, #{apiUrl,jdbcType=VARCHAR}, #{pch,jdbcType=VARCHAR}, #{zssx,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.model.Fw">
+    <!--
+      @MBG Generated
+    -->
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.String">
+       select replace(uuid(),'-','')
+    </selectKey>
+    insert into t_alyzcfw_fw
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      ID,
+      <if test="fwmc != null">
+        FWMC,
+      </if>
+      <if test="fwms != null">
+        FWMS,
+      </if>
+      <if test="fwflId != null">
+        FWFL_ID,
+      </if>
+      <if test="lrrq != null">
+        LRRQ,
+      </if>
+      <if test="xgrq != null">
+        XGRQ,
+      </if>
+      <if test="yxbz != null">
+        YXBZ,
+      </if>
+      <if test="scbz != null">
+        SCBZ,
+      </if>
+      <if test="iconId != null">
+        ICON_ID,
+      </if>
+      <if test="url != null">
+        URL,
+      </if>
+      <if test="xh != null">
+        XH,
+      </if>
+      <if test="apiUrl != null">
+        API_URL,
+      </if>
+      <if test="pch != null">
+        PCH,
+      </if>
+      <if test="zssx != null">
+        zssx,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{id,jdbcType=VARCHAR},
+      <if test="fwmc != null">
+        #{fwmc,jdbcType=VARCHAR},
+      </if>
+      <if test="fwms != null">
+        #{fwms,jdbcType=VARCHAR},
+      </if>
+      <if test="fwflId != null">
+        #{fwflId,jdbcType=VARCHAR},
+      </if>
+      <if test="lrrq != null">
+        #{lrrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="xgrq != null">
+        #{xgrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="yxbz != null">
+        #{yxbz,jdbcType=CHAR},
+      </if>
+      <if test="scbz != null">
+        #{scbz,jdbcType=CHAR},
+      </if>
+      <if test="iconId != null">
+        #{iconId,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="xh != null">
+        #{xh,jdbcType=DECIMAL},
+      </if>
+      <if test="apiUrl != null">
+        #{apiUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="pch != null">
+        #{pch,jdbcType=VARCHAR},
+      </if>
+      <if test="zssx != null">
+        #{zssx,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.model.FwExample" resultType="java.lang.Integer">
+    <!--
+      @MBG Generated
+    -->
+    select count(*) from t_alyzcfw_fw
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--
+      @MBG Generated
+    -->
+    update t_alyzcfw_fw
+    <set>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fwmc != null">
+        FWMC = #{record.fwmc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fwms != null">
+        FWMS = #{record.fwms,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fwflId != null">
+        FWFL_ID = #{record.fwflId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lrrq != null">
+        LRRQ = #{record.lrrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.xgrq != null">
+        XGRQ = #{record.xgrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.yxbz != null">
+        YXBZ = #{record.yxbz,jdbcType=CHAR},
+      </if>
+      <if test="record.scbz != null">
+        SCBZ = #{record.scbz,jdbcType=CHAR},
+      </if>
+      <if test="record.iconId != null">
+        ICON_ID = #{record.iconId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.url != null">
+        URL = #{record.url,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xh != null">
+        XH = #{record.xh,jdbcType=DECIMAL},
+      </if>
+      <if test="record.apiUrl != null">
+        API_URL = #{record.apiUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pch != null">
+        PCH = #{record.pch,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zssx != null">
+        zssx = #{record.zssx,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--
+      @MBG Generated
+    -->
+    update t_alyzcfw_fw
+    set ID = #{record.id,jdbcType=VARCHAR},
+      FWMC = #{record.fwmc,jdbcType=VARCHAR},
+      FWMS = #{record.fwms,jdbcType=VARCHAR},
+      FWFL_ID = #{record.fwflId,jdbcType=VARCHAR},
+      LRRQ = #{record.lrrq,jdbcType=TIMESTAMP},
+      XGRQ = #{record.xgrq,jdbcType=TIMESTAMP},
+      YXBZ = #{record.yxbz,jdbcType=CHAR},
+      SCBZ = #{record.scbz,jdbcType=CHAR},
+      ICON_ID = #{record.iconId,jdbcType=VARCHAR},
+      URL = #{record.url,jdbcType=VARCHAR},
+      XH = #{record.xh,jdbcType=DECIMAL},
+      API_URL = #{record.apiUrl,jdbcType=VARCHAR},
+      PCH = #{record.pch,jdbcType=VARCHAR},
+      zssx = #{record.zssx,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.model.Fw">
+    <!--
+      @MBG Generated
+    -->
+    update t_alyzcfw_fw
+    <set>
+      <if test="fwmc != null">
+        FWMC = #{fwmc,jdbcType=VARCHAR},
+      </if>
+      <if test="fwms != null">
+        FWMS = #{fwms,jdbcType=VARCHAR},
+      </if>
+      <if test="fwflId != null">
+        FWFL_ID = #{fwflId,jdbcType=VARCHAR},
+      </if>
+      <if test="lrrq != null">
+        LRRQ = #{lrrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="xgrq != null">
+        XGRQ = #{xgrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="yxbz != null">
+        YXBZ = #{yxbz,jdbcType=CHAR},
+      </if>
+      <if test="scbz != null">
+        SCBZ = #{scbz,jdbcType=CHAR},
+      </if>
+      <if test="iconId != null">
+        ICON_ID = #{iconId,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        URL = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="xh != null">
+        XH = #{xh,jdbcType=DECIMAL},
+      </if>
+      <if test="apiUrl != null">
+        API_URL = #{apiUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="pch != null">
+        PCH = #{pch,jdbcType=VARCHAR},
+      </if>
+      <if test="zssx != null">
+        zssx = #{zssx,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.model.Fw">
+    <!--
+      @MBG Generated
+    -->
+    update t_alyzcfw_fw
+    set FWMC = #{fwmc,jdbcType=VARCHAR},
+      FWMS = #{fwms,jdbcType=VARCHAR},
+      FWFL_ID = #{fwflId,jdbcType=VARCHAR},
+      LRRQ = #{lrrq,jdbcType=TIMESTAMP},
+      XGRQ = #{xgrq,jdbcType=TIMESTAMP},
+      YXBZ = #{yxbz,jdbcType=CHAR},
+      SCBZ = #{scbz,jdbcType=CHAR},
+      ICON_ID = #{iconId,jdbcType=VARCHAR},
+      URL = #{url,jdbcType=VARCHAR},
+      XH = #{xh,jdbcType=DECIMAL},
+      API_URL = #{apiUrl,jdbcType=VARCHAR},
+      PCH = #{pch,jdbcType=VARCHAR},
+      zssx = #{zssx,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

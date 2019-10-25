@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.mapper.QysswjXxzxTYwPpwhMapper">
+
+    <resultMap type="com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.model.QysswjXxzxTYwPpwh"
+               id="QysswjXxzxTYwPpwhMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="ppmc" column="ppmc" jdbcType="VARCHAR"/>
+        <result property="lxid" column="lxid" jdbcType="VARCHAR"/>
+        <result property="lxmc" column="lxmc" jdbcType="VARCHAR"/>
+        <result property="createtime" column="createtime" jdbcType="OTHER"/>
+        <result property="zt" column="zt" jdbcType="VARCHAR"/>
+        <result property="bz" column="bz" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询所有记录-->
+    <select id="selectAllPpwh" resultMap="QysswjXxzxTYwPpwhMap">
+        select
+        pp.id, pp.ppmc, pp.lxid,pp.lxmc, pp.createtime, pp.zt, pp.bz
+        from qysswj_xxzx_t_yw_lxwh lx
+        left join qysswj_xxzx_t_yw_ppwh pp on pp.lxid=lx.id
+        <where>
+            1=1
+            and pp.zt='1'
+            and lx.zt='1'
+            <if test="lxid!=null and lxid!='' ">
+                and pp.lxid =#{lxid}
+            </if>
+            <if test="ppmc!=null and ppmc!=''">
+                and pp.ppmc like '%${ppmc}%'
+            </if>
+        </where>
+        order by pp.createtime desc
+        <!--<if test="pageNum>0">-->
+        <!--limit ${(pageNum-1)*pageSize},${pageNum*pageSize}-->
+        <!--</if>-->
+    </select>
+
+    <!--查询单个记录-->
+    <select id="selectOneById" resultMap="QysswjXxzxTYwPpwhMap">
+        select
+        pp.id, pp.ppmc, pp.lxid,pp.lxmc, pp.createtime, pp.zt, pp.bz
+        from qysswj_xxzx_t_yw_lxwh lx
+        left join qysswj_xxzx_t_yw_ppwh pp on pp.lxid=lx.id
+        <where>
+            1=1
+            and pp.zt='1'
+            and lx.zt='1'
+            <if test="id!=null and id!='' ">
+                and pp.id=#{id}
+            </if>
+        </where>
+    </select>
+
+
+    <select id="queryCount" resultType="int">
+        select
+        count(*)
+        from qysswj_xxzx_t_yw_lxwh lx
+        left join qysswj_xxzx_t_yw_ppwh pp on pp.lxid=lx.id
+        <where>
+            1=1
+            and pp.zt='1'
+            and lx.zt='1'
+        </where>
+    </select>
+
+
+    <!--根据类型id获取品牌-->
+    <select id="selectAllPpwhByLxid" resultMap="QysswjXxzxTYwPpwhMap">
+        select
+        pp.id, pp.ppmc, pp.lxid,pp.lxmc, pp.createtime, pp.zt, pp.bz
+        from qysswj_xxzx_t_yw_lxwh lx
+        left join qysswj_xxzx_t_yw_ppwh pp on pp.lxid=lx.id
+        <where>
+            1=1
+            and pp.zt='1'
+            and lx.zt='1'
+            <if test="lxid!=null and lxid!='' ">
+                and pp.lxid=#{lxid}
+            </if>
+
+        </where>
+
+    </select>
+
+
+    <!--新增所有列-->
+    <insert id="insertPpwh" >
+    insert into  qysswj_xxzx_t_yw_ppwh(ppmc, lxid, lxmc, createtime, zt)
+    values (#{ppmc}, #{lxid}, #{lxmc}, now(), '1')
+    </insert>
+
+
+    <!--通过主键修改数据-->
+    <update id="updatePpwh">
+        update qysswj_xxzx_t_yw_ppwh
+        <set>
+            <if test="ppmc!=null and ppmc!=''">
+                ppmc=#{ppmc},
+            </if>
+            <if test="lxid!=null and lxid!='' ">
+                lxid=#{lxid},
+            </if>
+            <if test="lxmc!=null and lxmc!='' ">
+                lxmc=#{lxmc}
+            </if>
+        </set>
+        <where>
+            id = #{id}
+        </where>
+    </update>
+
+    <!--&lt;!&ndash;通过主键单个或批量修改数据状态&ndash;&gt;-->
+    <update id="updatePpwhZt">
+        update qysswj_xxzx_t_yw_ppwh
+        <set>
+            zt='0'
+        </set>
+        <where>
+            id in
+            <foreach collection="idList" separator="," open="(" close=")" item="id">
+                #{id}
+            </foreach>
+        </where>
+    </update>
+
+
+
+</mapper>

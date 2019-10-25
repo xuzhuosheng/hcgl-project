@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.mapper.QysswjXxzxTYwLxwhMapper">
+
+    <resultMap type="com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.model.QysswjXxzxTYwLxwh"
+               id="QysswjXxzxTYwLxwhMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="lxmc" column="lxmc" jdbcType="VARCHAR"/>
+        <result property="createtime" column="createtime" jdbcType="TIMESTAMP" javaType="DATE"/>
+        <result property="zt" column="zt" jdbcType="VARCHAR"/>
+        <result property="bz" column="bz" jdbcType="VARCHAR"/>
+    </resultMap>
+
+
+    <select id="selectAllLxwh" resultMap="QysswjXxzxTYwLxwhMap">
+        select
+        id, lxmc, createtime, zt, bz
+        from qysswj_xxzx_t_yw_lxwh
+        <where>
+            zt = '1'
+            <if test="lxmc!=null and lxmc!='' ">
+                and lxmc like '%${lxmc}%'
+            </if>
+        </where>
+        order by createtime desc
+        <!--<if test="pageNum>0">-->
+        <!--limit ${(pageNum-1)*pageSize},${pageNum*pageSize}-->
+        <!--</if>-->
+
+    </select>
+
+
+    <!--查询单个-->
+    <select id="selectOneById" resultMap="QysswjXxzxTYwLxwhMap">
+        select
+        id, lxmc, createtime, zt, bz
+        from qysswj_xxzx_t_yw_lxwh
+        <where>
+            1=1
+            and zt='1'
+            <if test="id!=null and id!=''">
+                and id=#{id}
+            </if>
+        </where>
+
+    </select>
+
+
+    <select id="queryCount" resultType="int">
+        select
+        count(*)
+        from qysswj_xxzx_t_yw_lxwh
+        <where>
+            1=1
+            and zt='1'
+        </where>
+
+    </select>
+    <!--新增所有列-->
+    <insert id="insertLxwh" useGeneratedKeys="true">
+    insert into  qysswj_xxzx_t_yw_lxwh(lxmc, createtime, zt)
+    values (#{lxmc}, now(),'1')
+    </insert>
+
+    <!--&lt;!&ndash;通过主键修改数据&ndash;&gt;-->
+    <update id="updateLxwh">
+        update qysswj_xxzx_t_yw_lxwh
+        <set>
+            lxmc = #{lxmc},
+        </set>
+        <where>
+            id = #{id}
+        </where>
+    </update>
+
+
+    <!--&lt;!&ndash;通过主键单个或批量修改数据状态&ndash;&gt;-->
+    <update id="updateLxwhZt">
+        update qysswj_xxzx_t_yw_lxwh
+        <set>
+            zt='0'
+        </set>
+        <where>
+            id in
+            <foreach collection="idList" separator="," open="(" close=")" item="id">
+                #{id}
+            </foreach>
+        </where>
+    </update>
+
+
+    <!--查询所有状态为正常在用（zt=1）的记录-->
+    <select id="selectAllZyLxwh" resultMap="QysswjXxzxTYwLxwhMap">
+        select
+        id, lxmc, createtime, zt, bz
+        from qysswj_xxzx_t_yw_lxwh
+        <where>
+            zt = '1'
+        </where>
+        order by createtime desc
+
+    </select>
+    <!--&lt;!&ndash;查询指定行数据&ndash;&gt;-->
+    <!--<select id="queryAllByLimit" resultMap="QysswjXxzxTYwLxwhMap">-->
+    <!--select-->
+    <!--id, lxmc, createtime, zt, bz-->
+    <!--from qysw.qysswj_xxzx_t_yw_lxwh-->
+    <!--limit #{offset}, #{limit}-->
+    <!--</select>-->
+
+    <!--&lt;!&ndash;通过实体作为筛选条件查询&ndash;&gt;-->
+    <!--<select id="queryAll" resultMap="QysswjXxzxTYwLxwhMap">-->
+    <!--select-->
+    <!--id, lxmc, createtime, zt, bz-->
+    <!--from qysw.qysswj_xxzx_t_yw_lxwh-->
+    <!--<where>-->
+    <!--<if test="id != null">-->
+    <!--and id = #{id}-->
+    <!--</if>-->
+    <!--<if test="lxmc != null and lxmc != ''">-->
+    <!--and lxmc = #{lxmc}-->
+    <!--</if>-->
+    <!--<if test="createtime != null">-->
+    <!--and createtime = #{createtime}-->
+    <!--</if>-->
+    <!--<if test="zt != null and zt != ''">-->
+    <!--and zt = #{zt}-->
+    <!--</if>-->
+    <!--<if test="bz != null and bz != ''">-->
+    <!--and bz = #{bz}-->
+    <!--</if>-->
+    <!--</where>-->
+    <!--</select>-->
+
+
+    <!--&lt;!&ndash;通过主键修改数据&ndash;&gt;-->
+    <!--<update id="update">-->
+    <!--update qysw.qysswj_xxzx_t_yw_lxwh-->
+    <!--<set>-->
+    <!--<if test="lxmc != null and lxmc != ''">-->
+    <!--lxmc = #{lxmc},-->
+    <!--</if>-->
+    <!--<if test="createtime != null">-->
+    <!--createtime = #{createtime},-->
+    <!--</if>-->
+    <!--<if test="zt != null and zt != ''">-->
+    <!--zt = #{zt},-->
+    <!--</if>-->
+    <!--<if test="bz != null and bz != ''">-->
+    <!--bz = #{bz},-->
+    <!--</if>-->
+    <!--</set>-->
+    <!--where id = #{id}-->
+    <!--</update>-->
+
+    <!--&lt;!&ndash;通过主键删除&ndash;&gt;-->
+    <!--<delete id="deleteById">-->
+    <!--delete from qysw.qysswj_xxzx_t_yw_lxwh where id = #{id}-->
+    <!--</delete>-->
+
+</mapper>

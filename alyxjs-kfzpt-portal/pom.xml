@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>hyht-alyxjs-kfzpt</artifactId>
+        <groupId>com.ihyht.alyxjs</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>alyxjs-kfzpt-portal</artifactId>
+    <dependencies>
+        <!--web基础包-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!--spring cloud-->
+        <!--使用注册中心-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-eureka</artifactId>
+        </dependency>
+        <!--热部署-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <!--测试包-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+        <!--工具包-->
+        <dependency>
+            <groupId>com.ihyht.commons</groupId>
+            <artifactId>commons-lang</artifactId>
+
+        </dependency>
+        <dependency>
+            <groupId>com.ihyht.alyxjs.nbjcpt</groupId>
+            <artifactId>common-api</artifactId>
+        </dependency>
+        <!--&lt;!&ndash;代码生成器包&ndash;&gt;-->
+        <!--&lt;!&ndash;<dependency>&ndash;&gt;-->
+            <!--&lt;!&ndash;<groupId>com.ihyht.alyxjs.nbjcpt</groupId>&ndash;&gt;-->
+            <!--&lt;!&ndash;<artifactId>component-generator</artifactId>&ndash;&gt;-->
+            <!--&lt;!&ndash;<version>1.0-SNAPSHOT</version>&ndash;&gt;-->
+        <!--&lt;!&ndash;</dependency>&ndash;&gt;-->
+        <!--swagger包-->
+        <dependency>
+            <groupId>com.ihyht.alyxjs.nbjcpt</groupId>
+            <artifactId>component-swagger</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.7.0</version>
+        </dependency>
+        <!--鉴权包-->
+        <dependency>
+            <groupId>com.ihyht.alyxjs.nbjcpt</groupId>
+            <artifactId>component-auth2</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ihyht.alyxjs</groupId>
+            <artifactId>module-service-portal</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.ihyht.alyxjs.nbjcpt</groupId>
+            <artifactId>component-dao-mybatis</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
