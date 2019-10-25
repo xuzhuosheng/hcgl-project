@@ -75,12 +75,12 @@
     </select>
 
     <!--新增所有列 useGeneratedKeys="true"-->
-    <insert id="insertCgjh" keyProperty="id" keyColumn="id" >
-        <selectKey resultType="java.lang.Long" order="AFTER" keyProperty="id">
-            SELECT LAST_INSERT_ID()
-        </selectKey>
+    <insert id="insertCgjh" useGeneratedKeys="true"  parameterType="com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.model.QysswjXxzxTYwCgjh"  keyProperty="qysswjXxzxTYwCgjh.id" keyColumn="id" >
+        <!--<selectKey resultType="java.lang.Long" order="AFTER" keyProperty="id">-->
+            <!--SELECT LAST_INSERT_ID()-->
+        <!--</selectKey>-->
         insert into qysswj_xxzx_t_yw_cgjh(cgjhmc, createtime, creater, zt)
-        values (#{cgjhmc}, now(),'admin', '1' )
+        values (#{qysswjXxzxTYwCgjh.cgjhmc}, now(),'admin', '1' )
     </insert>
 
     <!--通过主键修改数据-->

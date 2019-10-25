@@ -15,5 +15,5 @@ public interface QysswjXxzxTYwCgjhService {
 
     List<QysswjXxzxTYwCgjh> getYwLbwhList(String cgjhmc, String qsrq, String zzrq, int pageNum, int pageSize);
 
-    int addCgjh(String cgjhmc);
+    int addCgjh(QysswjXxzxTYwCgjh qysswjXxzxTYwCgjh);
 }

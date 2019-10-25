@@ -19,5 +19,5 @@ public interface QysswjXxzxTYwCgjhMapper {
                                         @Param ("zzrq") String zzrq, @Param ("pageNum") int pageNum,
                                         @Param ("pageSize") int pageSize);
 
-    int insertCgjh(@Param ("cgjhmc") String cgjhmc, @Param ("id") int id);
+    int insertCgjh(@Param ("qysswjXxzxTYwCgjh") QysswjXxzxTYwCgjh qysswjXxzxTYwCgjh);
 }

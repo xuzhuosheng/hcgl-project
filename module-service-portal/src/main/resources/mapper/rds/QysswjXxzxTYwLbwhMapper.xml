@@ -34,7 +34,7 @@
     <select id="selectAllYwLbwhList" resultMap="QysswjXxzxTYwLbwhMap">
         select
         lx.id lxid,lx.lxmc lxmc,pp.id ppid,pp.ppmc ppmc,xh.id xhid,xh.xhmc xhmc,
-        lb.id , lb.lbmc, lb.ysdj, lb.kcl,
+        lb.id , lb.lbmc, lb.ysdj, lb.kcl,lb.fz,
         lb.createtime,
         lb.zt, lb.bz
         from qysswj_xxzx_t_yw_lxwh lx
@@ -88,8 +88,8 @@
 
     <!--新增所有列-->
     <insert id="insertYwLbwh">
-        insert into  qysswj_xxzx_t_yw_lbwh(lbmc, ysdj, kcl, xhid, xhmc, createtime, zt)
-        values (#{lbmc}, #{ysdj}, #{kcl}, #{xhid}, #{xhmc}, now(), '1')
+        insert into  qysswj_xxzx_t_yw_lbwh(lbmc, ysdj, kcl, xhid, xhmc,fz, createtime, zt)
+        values (#{lbmc}, #{ysdj}, #{kcl}, #{xhid}, #{xhmc},#{fz}, now(), '1')
     </insert>
 
     <!--&lt;!&ndash;通过主键修改数据&ndash;&gt;-->

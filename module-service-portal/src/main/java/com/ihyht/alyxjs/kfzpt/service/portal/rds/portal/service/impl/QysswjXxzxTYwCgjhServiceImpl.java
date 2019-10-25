@@ -33,17 +33,9 @@ public class QysswjXxzxTYwCgjhServiceImpl implements QysswjXxzxTYwCgjhService {
     }
 
     @Override
-    public int addCgjh(String cgjhmc) {
-        Integer cgjhid = null;
-
-        try {
-            int id = qysswjXxzxTYwCgjhDao.insertCgjh(cgjhmc,0);
-            System.out.println(id);
-            cgjhid = id;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return cgjhid;
+    public int addCgjh(QysswjXxzxTYwCgjh qysswjXxzxTYwCgjh) {
+        int id = qysswjXxzxTYwCgjhDao.insertCgjh(qysswjXxzxTYwCgjh);
+        return id;
 
     }
 

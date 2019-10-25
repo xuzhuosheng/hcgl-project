@@ -95,11 +95,15 @@ public class QysswjXxzxTYwCgjhController {
                                  @RequestParam (required = false) String title) {
 
 
-        Integer cgjhId = qysswjXxzxTYwCgjhService.addCgjh(title);
-        boolean flag = true;
-        if (cgjhId != null) {
+        QysswjXxzxTYwCgjh qysswjXxzxTYwCgjh = new QysswjXxzxTYwCgjh();
+        qysswjXxzxTYwCgjh.setCgjhmc(title);
 
-            if (!"".equals(idNum)) {
+        Integer cgjhId2 = qysswjXxzxTYwCgjhService.addCgjh(qysswjXxzxTYwCgjh);
+        boolean flag = true;
+        if (qysswjXxzxTYwCgjh != null) {
+            int cgjhId = qysswjXxzxTYwCgjh.getId();
+
+            if (idNum != null) {
 
                 String idNumArr[] = idNum.split(",");
                 QysswjXxzxTYwLbwh qysswjXxzxTYwLbwh;
