@@ -92,27 +92,33 @@ public class QysswjXxzxTYwCgjhController {
     @RequestMapping (value = "/saveCgjh", method = RequestMethod.POST)
     @ResponseBody
     public RestResponse saveCgjh(@RequestParam (required = false) String idNum,
-                                 @RequestParam (required = false) String title) {
+                                 @RequestParam (required = false) String title,
+                                 @RequestParam (required = false) int zsl,
+                                 @RequestParam (required = false) double zje) {
 
 
         QysswjXxzxTYwCgjh qysswjXxzxTYwCgjh = new QysswjXxzxTYwCgjh();
         qysswjXxzxTYwCgjh.setCgjhmc(title);
+        qysswjXxzxTYwCgjh.setZsl(zsl);
+        qysswjXxzxTYwCgjh.setZje(zje);
 
         Integer cgjhId2 = qysswjXxzxTYwCgjhService.addCgjh(qysswjXxzxTYwCgjh);
+        int cgjhid = qysswjXxzxTYwCgjh.getId();
+
         boolean flag = true;
         if (qysswjXxzxTYwCgjh != null) {
-            int cgjhId = qysswjXxzxTYwCgjh.getId();
 
             if (idNum != null) {
 
                 String idNumArr[] = idNum.split(",");
                 QysswjXxzxTYwLbwh qysswjXxzxTYwLbwh;
 
+//保存采购计划详情
                 for(int i = 0; i < idNumArr.length; i++) {
                     qysswjXxzxTYwLbwh = new QysswjXxzxTYwLbwh();
                     qysswjXxzxTYwLbwh = qysswjXxzxTYwLbwhService.getYwLbwhById(idNumArr[i].split("---")[0]);
                     if (flag) {
-                        flag = qysswjXxzxTYwCgjhxqService.addCgjhXq(cgjhId, qysswjXxzxTYwLbwh,
+                        flag = qysswjXxzxTYwCgjhxqService.addCgjhXq(cgjhid, qysswjXxzxTYwLbwh,
                                 new Integer(idNumArr[i].split("---")[1]));
                     }
                 }
@@ -130,6 +136,27 @@ public class QysswjXxzxTYwCgjhController {
 
 
     }
+
+
+
+    @ApiOperation (value = "获取所有采购计划的数据量 ")
+    @ApiResponse (code = 400, message = "参数没有填好", response = String.class)
+    @RequestMapping (value = "/getCount", method = RequestMethod.POST)
+    @ResponseBody
+    public RestResponse getCount() {
+
+        int countNum = qysswjXxzxTYwCgjhService.getCount();
+        if (countNum >= 0) {
+            return RestResponse.success(countNum);
+        } else {
+            return RestResponse.failed(ApiReturnCodeEnum.saveFail);
+
+        }
+
+    }
+
+
+
 
 
     @ApiOperation (value = "导出Excel", notes = "导出Excel")

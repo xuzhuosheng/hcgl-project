@@ -25,7 +25,7 @@ public class QysswjXxzxTYwCgjh implements Serializable {
     private double zje;//总金额
 
     private String creater;
-
+    @JsonFormat (pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date endtime; //完成时间
     private String zt;
 

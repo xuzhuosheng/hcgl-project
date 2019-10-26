@@ -19,32 +19,12 @@ public class QysswjXxzxTYwCgjhxqServiceImpl implements QysswjXxzxTYwCgjhxqServic
     private QysswjXxzxTYwCgjhxqMapper qysswjXxzxTYwCgjhxqDao;
 
 
-//    private Integer id;
-//
-//    private Integer cgjhid;
-//
-//    private String lxmc;
-//
-//    private String ppmc;
-//
-//    private String xhmc;
-//
-//    private String lbmc;
-//
-//    private Integer cgsl;
-//
-//    private double ysdj;
-//
-//    private String zt;
-//
-//    private String bz;
-
     @Override
-    public boolean addCgjhXq(Integer cgjhId, QysswjXxzxTYwLbwh qysswjXxzxTYwLbwh, Integer cgsl) {
+    public boolean addCgjhXq(Integer cgjhid, QysswjXxzxTYwLbwh qysswjXxzxTYwLbwh, Integer cgsl) {
         boolean flag = true;
 
         try {
-            qysswjXxzxTYwCgjhxqDao.insertCgjhxq(cgjhId, qysswjXxzxTYwLbwh.getLxmc(), qysswjXxzxTYwLbwh.getPpmc(),
+            qysswjXxzxTYwCgjhxqDao.insertCgjhxq(cgjhid, qysswjXxzxTYwLbwh.getLxmc(), qysswjXxzxTYwLbwh.getPpmc(),
                     qysswjXxzxTYwLbwh.getXhmc(), qysswjXxzxTYwLbwh.getLbmc(),
                     Double.parseDouble(qysswjXxzxTYwLbwh.getYsdj()), cgsl);
 

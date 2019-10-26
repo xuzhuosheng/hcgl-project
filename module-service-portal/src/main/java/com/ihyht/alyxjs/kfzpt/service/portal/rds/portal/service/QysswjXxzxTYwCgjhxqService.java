@@ -11,5 +11,5 @@ import com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.model.QysswjXxzxTYwLbwh;
 public interface QysswjXxzxTYwCgjhxqService {
 
 
-    boolean addCgjhXq(Integer cgjhId, QysswjXxzxTYwLbwh qysswjXxzxTYwLbwh, Integer cgsl);
+    boolean addCgjhXq(Integer cgjhid, QysswjXxzxTYwLbwh qysswjXxzxTYwLbwh, Integer cgsl);
 }

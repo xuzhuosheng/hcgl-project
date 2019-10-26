@@ -39,5 +39,14 @@ public class QysswjXxzxTYwCgjhServiceImpl implements QysswjXxzxTYwCgjhService {
 
     }
 
-
+    @Override
+    public int getCount() {
+        int countNum = 0;
+        try {
+            countNum = qysswjXxzxTYwCgjhDao.queryCount();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return countNum;
+    }
 }

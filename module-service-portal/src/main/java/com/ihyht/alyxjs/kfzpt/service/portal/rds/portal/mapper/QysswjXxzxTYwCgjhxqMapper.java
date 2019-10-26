@@ -11,7 +11,7 @@ import org.apache.ibatis.annotations.Param;
 public interface QysswjXxzxTYwCgjhxqMapper {
 
 
-    void insertCgjhxq(@Param ("cgjhId") Integer cgjhId, @Param ("lxmc") String lxmc, @Param ("ppmc") String ppmc,
+    void insertCgjhxq(@Param ("cgjhid") Integer cgjhid, @Param ("lxmc") String lxmc, @Param ("ppmc") String ppmc,
                       @Param ("xhmc") String xhmc, @Param ("lbmc") String lbmc, @Param ("ysdj") Double ysdj, @Param (
                               "cgsl") Integer cgsl);
 }

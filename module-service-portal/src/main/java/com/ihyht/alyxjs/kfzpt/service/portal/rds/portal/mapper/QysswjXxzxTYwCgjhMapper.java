@@ -20,4 +20,6 @@ public interface QysswjXxzxTYwCgjhMapper {
                                         @Param ("pageSize") int pageSize);
 
     int insertCgjh(@Param ("qysswjXxzxTYwCgjh") QysswjXxzxTYwCgjh qysswjXxzxTYwCgjh);
+
+    int queryCount();
 }
