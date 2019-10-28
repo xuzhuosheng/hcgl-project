@@ -156,7 +156,7 @@ public class QysswjXxzxTYwLbwhController {
                                    @RequestParam (required = false) Integer kcl
     ) {
 
-        boolean flag = qysswjXxzxTYwLbwhService.editYwLbwh(id, xhid, xhmc, lbmc, fz, ysdj, kcl);
+        boolean flag = qysswjXxzxTYwLbwhService.editYwLbwh(id, xhid, xhmc, lbmc, fz, ysdj, kcl, "1");
         if (flag) {
             return RestResponse.success(flag);
         } else {

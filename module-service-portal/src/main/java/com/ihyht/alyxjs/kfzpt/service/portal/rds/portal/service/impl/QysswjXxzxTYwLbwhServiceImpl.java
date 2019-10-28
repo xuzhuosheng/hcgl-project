@@ -89,10 +89,11 @@ public class QysswjXxzxTYwLbwhServiceImpl implements QysswjXxzxTYwLbwhService {
     }
 
     @Override
-    public boolean editYwLbwh(String id, String xhid, String xhmc, String lbmc, Integer fz, Double ysdj, Integer kcl) {
+    public boolean editYwLbwh(String id, String xhid, String xhmc, String lbmc, Integer fz, Double ysdj, Integer kcl,
+                              String bz) {
         boolean flag = true;
         try {
-            qysswjXxzxTYwLbwhDao.updateYwLbwh(id, xhid, xhmc, lbmc, fz, ysdj, kcl);
+            qysswjXxzxTYwLbwhDao.updateYwLbwh(id, xhid, xhmc, lbmc, fz, ysdj, kcl, bz);
         } catch (Exception e) {
             flag = false;
             e.printStackTrace();
@@ -100,7 +101,20 @@ public class QysswjXxzxTYwLbwhServiceImpl implements QysswjXxzxTYwLbwhService {
         return flag;
     }
 
-//    @Override
+    //    @Override
+//    public boolean editYwLbwh(String id, String xhid, String xhmc, String lbmc, Integer fz, Double ysdj, Integer kcl,
+//                              String bz) {
+//        boolean flag = true;
+//        try {
+//            qysswjXxzxTYwLbwhDao.updateYwLbwh(id, xhid, xhmc, lbmc, fz, ysdj, kcl, bz);
+//        } catch (Exception e) {
+//            flag = false;
+//            e.printStackTrace();
+//        }
+//        return flag;
+//    }
+
+    //    @Override
 //    public boolean editYwLbwh(String id, String xhid, String xhmc, String kcl, Double ysdj) {
 //        boolean flag = true;
 //        try {

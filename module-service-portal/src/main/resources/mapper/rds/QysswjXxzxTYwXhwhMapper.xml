@@ -82,8 +82,16 @@
             and xh.zt='1'
             and lx.zt='1'
             and pp.zt='1'
+            <if test="lxid!=null and lxid!=''">
+                and lx.id=#{lxid}
+            </if>
+            <if test="ppid!=null and ppid!=''">
+                and pp.id=#{ppid}
+            </if>
+            <if test="xhmc!=null and xhmc!=''">
+                and xhmc like '%${xhmc}%'
+            </if>
         </where>
-
 
     </select>
 

@@ -22,4 +22,6 @@ public interface QysswjXxzxTYwCgjhMapper {
     int insertCgjh(@Param ("qysswjXxzxTYwCgjh") QysswjXxzxTYwCgjh qysswjXxzxTYwCgjh);
 
     int queryCount();
+
+    boolean updateCgjhZt(@Param ("id") String id);
 }

@@ -2,12 +2,12 @@ package com.ihyht.alyxjs.kfzpt.portal.console.caigou;
 
 import com.ihyht.alyxjs.kfzpt.portal.utils.ExcelUtil;
 import com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.model.QysswjXxzxTYwCgjh;
+import com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.model.QysswjXxzxTYwCgjhxq;
 import com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.model.QysswjXxzxTYwLbwh;
 import com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.service.QysswjXxzxTYwCgjhService;
 import com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.service.QysswjXxzxTYwCgjhxqService;
 import com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.service.QysswjXxzxTYwLbwhService;
 import com.ihyht.alyxjs.nbjcpt.common.api.ApiReturnCodeEnum;
-import com.ihyht.commons.lang.ExcelUtils;
 import com.ihyht.commons.lang.model.RestResponse;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Value;
@@ -74,7 +74,7 @@ public class QysswjXxzxTYwCgjhController {
     }
 
 
-    @ApiOperation (value = "智能生成采购计划", notes = "获取类别里的数据")
+    @ApiOperation (value = "智能生成采购计划", notes = "获取数据库中库存量少于阀值的数据")
     @RequestMapping (value = "/createCgjh", method = RequestMethod.POST)
     @ResponseBody
     public RestResponse createCgjh() {
@@ -88,19 +88,19 @@ public class QysswjXxzxTYwCgjhController {
         }
     }
 
-    @ApiOperation (value = "新增后保存采购计划", notes = "获取类别里的数据")
+    @ApiOperation (value = "新增后保存采购计划", notes = "保存数据库")
     @RequestMapping (value = "/saveCgjh", method = RequestMethod.POST)
     @ResponseBody
     public RestResponse saveCgjh(@RequestParam (required = false) String idNum,
-                                 @RequestParam (required = false) String title,
-                                 @RequestParam (required = false) int zsl,
-                                 @RequestParam (required = false) double zje) {
+                                 @RequestParam (required = false) String title
+                                 /*@RequestParam (required = false) int zsl,
+                                 @RequestParam (required = false) double zje*/) {
 
 
         QysswjXxzxTYwCgjh qysswjXxzxTYwCgjh = new QysswjXxzxTYwCgjh();
         qysswjXxzxTYwCgjh.setCgjhmc(title);
-        qysswjXxzxTYwCgjh.setZsl(zsl);
-        qysswjXxzxTYwCgjh.setZje(zje);
+//        qysswjXxzxTYwCgjh.setZsl(zsl);
+//        qysswjXxzxTYwCgjh.setZje(zje);
 
         Integer cgjhId2 = qysswjXxzxTYwCgjhService.addCgjh(qysswjXxzxTYwCgjh);
         int cgjhid = qysswjXxzxTYwCgjh.getId();
@@ -138,7 +138,6 @@ public class QysswjXxzxTYwCgjhController {
     }
 
 
-
     @ApiOperation (value = "获取所有采购计划的数据量 ")
     @ApiResponse (code = 400, message = "参数没有填好", response = String.class)
     @RequestMapping (value = "/getCount", method = RequestMethod.POST)
@@ -156,7 +155,38 @@ public class QysswjXxzxTYwCgjhController {
     }
 
 
+    @ApiOperation (value = "更新采购计划的状态 ")
+    @ApiResponse (code = 400, message = "参数没有填好", response = String.class)
+    @RequestMapping (value = "/editCgjhZt", method = RequestMethod.POST)
+    @ResponseBody
+    public RestResponse editCgjhZt(@RequestParam (required = false) String id) {
 
+
+        boolean flag = qysswjXxzxTYwCgjhService.editCgjhZt(id);
+
+
+        List<QysswjXxzxTYwCgjhxq> cgjhxqList = new ArrayList<>();
+
+        cgjhxqList = qysswjXxzxTYwCgjhxqService.getCgjhxqByCgjhid(id);
+
+        boolean flag2 = true;
+
+        if (cgjhxqList != null) {
+            for(int i = 0; i < cgjhxqList.size(); i++) {
+                flag2 = qysswjXxzxTYwLbwhService.editYwLbwh(String.valueOf(cgjhxqList.get(i).getId()), "", "", "",
+                        null, null,
+                        cgjhxqList.get(i).getCgsl(), "2");
+            }
+        }
+
+        if (flag && flag2) {
+            return RestResponse.success(flag);
+        } else {
+            return RestResponse.failed(ApiReturnCodeEnum.saveFail);
+
+        }
+
+    }
 
 
     @ApiOperation (value = "导出Excel", notes = "导出Excel")

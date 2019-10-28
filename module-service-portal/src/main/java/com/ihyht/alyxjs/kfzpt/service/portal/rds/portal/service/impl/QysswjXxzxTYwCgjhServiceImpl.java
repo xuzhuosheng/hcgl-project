@@ -40,6 +40,18 @@ public class QysswjXxzxTYwCgjhServiceImpl implements QysswjXxzxTYwCgjhService {
     }
 
     @Override
+    public boolean editCgjhZt(String id) {
+        boolean flag = true;
+        try {
+            flag = qysswjXxzxTYwCgjhDao.updateCgjhZt(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return flag;
+
+    }
+
+    @Override
     public int getCount() {
         int countNum = 0;
         try {

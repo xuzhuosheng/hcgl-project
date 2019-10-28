@@ -36,5 +36,10 @@ public interface QysswjXxzxTYwLbwhMapper {
 
     void updateYwLbwh(@Param ("id") String id, @Param ("xhid") String xhid, @Param ("xhmc") String xhmc,
                       @Param ("lbmc") String lbmc, @Param ("fz") Integer fz, @Param ("ysdj") Double ysdj,
-                      @Param ("kcl") Integer kcl);
+                      @Param ("kcl") Integer kcl, @Param ("bz") String bz);
+
+
+//    void updateYwLbwh(@Param ("id") String id, @Param ("xhid") String xhid, @Param ("xhmc") String xhmc,
+//                      @Param ("lbmc") String lbmc, @Param ("fz") Integer fz, @Param ("ysdj") Double ysdj,
+//                      @Param ("kcl") Integer kcl, @Param ("bz") String bz);
 }

@@ -11,15 +11,18 @@ import java.io.Serializable;
 public class QysswjXxzxTYwCgjhxq implements Serializable {
     private static final long serialVersionUID = -50810811777853132L;
 
-    private Integer id;
+    private int id;
 
-    private Integer cgjhid;
+    private int cgjhid;
 
     private String lxmc;
 
     private String ppmc;
 
     private String xhmc;
+
+
+    private int lbid;
 
     private String lbmc;
 
@@ -31,21 +34,28 @@ public class QysswjXxzxTYwCgjhxq implements Serializable {
 
     private String bz;
 
-
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public Integer getCgjhid() {
+    public int getCgjhid() {
         return cgjhid;
     }
 
-    public void setCgjhid(Integer cgjhid) {
+    public void setCgjhid(int cgjhid) {
         this.cgjhid = cgjhid;
+    }
+
+    public int getLbid() {
+        return lbid;
+    }
+
+    public void setLbid(int lbid) {
+        this.lbid = lbid;
     }
 
     public String getLxmc() {

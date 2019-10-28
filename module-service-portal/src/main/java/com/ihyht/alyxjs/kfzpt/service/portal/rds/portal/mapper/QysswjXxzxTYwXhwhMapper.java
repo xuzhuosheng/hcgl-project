@@ -20,14 +20,14 @@ public interface QysswjXxzxTYwXhwhMapper {
 
     void insertXhwh(@Param ("ppid") String ppid, @Param ("ppmc") String ppmc, @Param ("xhmc") String xhmc);
 
-    QysswjXxzxTYwXhwh selectOneById(String id);
+    QysswjXxzxTYwXhwh selectOneById(@Param ("id") String id);
 
     void updateXhwh(@Param ("ppid") String ppid, @Param ("ppmc") String ppmc,
                     @Param ("xhmc") String xhmc, @Param ("id") String id);
 
     void updateXhwhZt(@Param ("idList") List<String> idList);
 
-    List<QysswjXxzxTYwXhwh> selectXhwhListByPpid(@Param("ppid") String ppid);
+    List<QysswjXxzxTYwXhwh> selectXhwhListByPpid(@Param ("ppid") String ppid);
 
     int queryCount();
 }

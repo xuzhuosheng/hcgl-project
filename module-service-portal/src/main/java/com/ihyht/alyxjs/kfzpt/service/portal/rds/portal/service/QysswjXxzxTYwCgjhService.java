@@ -18,4 +18,6 @@ public interface QysswjXxzxTYwCgjhService {
     int addCgjh(QysswjXxzxTYwCgjh qysswjXxzxTYwCgjh);
 
     int getCount();
+
+    boolean editCgjhZt(String id);
 }

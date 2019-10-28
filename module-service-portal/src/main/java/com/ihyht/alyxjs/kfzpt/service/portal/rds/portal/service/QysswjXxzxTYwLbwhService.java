@@ -27,5 +27,7 @@ public interface QysswjXxzxTYwLbwhService {
 
     int getCount();
 
-    boolean editYwLbwh(String id, String xhid, String xhmc, String lbmc, Integer fz, Double ysdj, Integer kcl);
+    boolean editYwLbwh(String id, String xhid, String xhmc, String lbmc, Integer fz, Double ysdj, Integer kcl, String bz);
+
+//    boolean editYwLbwh(String id, String xhid, String xhmc, String lbmc, Integer fz, Double ysdj, Integer kcl, String bz);
 }

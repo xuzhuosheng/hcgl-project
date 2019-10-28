@@ -51,8 +51,10 @@
         count(*)
         from qysswj_xxzx_t_yw_lxwh
         <where>
-            1=1
-            and zt='1'
+            zt = '1'
+            <if test="lxmc!=null and lxmc!='' ">
+                and lxmc like '%${lxmc}%'
+            </if>
         </where>
 
     </select>

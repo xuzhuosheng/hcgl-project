@@ -81,6 +81,22 @@
             and pp.zt='1'
             and xh.zt='1'
             and lb.zt='1'
+            <if test="lxid!=null and lxid!='' ">
+                and lx.id=#{lxid}
+            </if>
+            <if test="ppid!=null and ppid!='' ">
+                and pp.id=#{ppid}
+            </if>
+            <if test="xhid!=null and xhid!='' ">
+                and xh.id=#{xhid}
+            </if>
+            <if test="kcl!=null  ">
+                and lb.kcl=#{kcl}
+            </if>
+            <if test="lbmc!=null and lbmc!='' ">
+                and lb.lbmc like '%${lbmc}%'
+            </if>
+
         </where>
 
     </select>
@@ -102,9 +118,20 @@
             <if test="ysdj != null ">
                 ysdj = #{ysdj},
             </if>
-            <if test="kcl != null  ">
+
+            <if test="bz!=null and bz!='' and  '1' eq bz ">
+                bz='手动修改库存量',
+            </if>
+            <if test="kcl != null and '1' eq bz ">
                 kcl = #{kcl},
             </if>
+            <if test="bz!=null and bz!='' and '2' eq bz ">
+                bz='采购计划批量更新库存量',
+            </if>
+            <if test="kcl != null  and '2' eq bz ">
+                kcl = kcl+#{kcl},
+            </if>
+
             <if test="xhid != null and xhid != ''">
                 xhid = #{xhid},
             </if>
@@ -163,4 +190,20 @@
         </where>
 
     </select>
+
+
+    <!--&lt;!&ndash;通过主键单个或批量修改数据状态&ndash;&gt;-->
+    <update id="updateYwLbwhZt">
+        update qysswj_xxzx_t_yw_lbwh
+        <set>
+            zt='0'
+        </set>
+        <where>
+            id in
+            <foreach collection="idList" separator="," open="(" close=")" item="id">
+                #{id}
+            </foreach>
+        </where>
+    </update>
+
 </mapper>
