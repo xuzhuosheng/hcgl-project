@@ -173,7 +173,7 @@ public class QysswjXxzxTYwCgjhController {
 
         if (cgjhxqList != null) {
             for(int i = 0; i < cgjhxqList.size(); i++) {
-                flag2 = qysswjXxzxTYwLbwhService.editYwLbwh(String.valueOf(cgjhxqList.get(i).getId()), "", "", "",
+                flag2 = qysswjXxzxTYwLbwhService.editYwLbwh(String.valueOf(cgjhxqList.get(i).getLbid()), "", "", "",
                         null, null,
                         cgjhxqList.get(i).getCgsl(), "2");
             }

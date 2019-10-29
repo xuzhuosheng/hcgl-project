@@ -111,27 +111,27 @@
     <!--&lt;!&ndash;通过主键修改数据&ndash;&gt;-->
     <update id="updateYwLbwh">
         update qysswj_xxzx_t_yw_lbwh
-        <set>
+
+        <trim prefix="set" suffixOverrides=",">
+
             <if test="lbmc != null and lbmc != ''">
                 lbmc = #{lbmc},
             </if>
             <if test="ysdj != null ">
                 ysdj = #{ysdj},
             </if>
-
-            <if test="bz!=null and bz!='' and  '1' eq bz ">
+            <if test=" 1==bz">
                 bz='手动修改库存量',
+                <if test="kcl != null  ">
+                    kcl = #{kcl},
+                </if>
             </if>
-            <if test="kcl != null and '1' eq bz ">
-                kcl = #{kcl},
+            <if test=" 2==bz">
+                bz='入库自动修改库存量',
+                <if test="kcl != null  ">
+                    kcl = kcl+#{kcl},
+                </if>
             </if>
-            <if test="bz!=null and bz!='' and '2' eq bz ">
-                bz='采购计划批量更新库存量',
-            </if>
-            <if test="kcl != null  and '2' eq bz ">
-                kcl = kcl+#{kcl},
-            </if>
-
             <if test="xhid != null and xhid != ''">
                 xhid = #{xhid},
             </if>
@@ -141,8 +141,7 @@
             <if test="fz != null ">
                 fz = #{fz},
             </if>
-
-        </set>
+        </trim>
         where id = #{id}
     </update>
 
