@@ -196,6 +196,10 @@ public class QysswjXxzxTYwCgjhController {
 
 
         List<String> titleList = new ArrayList<>();
+        List<List<String>> dataList = new ArrayList<>();
+
+        List<String> data = null;
+
         List<QysswjXxzxTYwLbwh> lbwhList = new ArrayList<>();
 
         titleList.add("类型");
@@ -204,9 +208,27 @@ public class QysswjXxzxTYwCgjhController {
         titleList.add("类别");
         titleList.add("数量");
         titleList.add("单价");
+        titleList.add("金额");
+
+        List<QysswjXxzxTYwCgjhxq> cgjhxqList = qysswjXxzxTYwCgjhxqService.getCgjhxqByCgjhid(cgjhid);
 
 
-        ExcelUtil.exportExcel("", titleList, null, response);
+        if (cgjhxqList != null) {
+            for(int i = 0; i < cgjhxqList.size(); i++) {
+                data = new ArrayList<>();
+                data.add(cgjhxqList.get(i).getLbmc());
+                data.add(cgjhxqList.get(i).getPpmc());
+                data.add(cgjhxqList.get(i).getXhmc());
+                data.add(cgjhxqList.get(i).getLbmc());
+                data.add(cgjhxqList.get(i).getCgsl().toString());
+                data.add(String.valueOf(cgjhxqList.get(i).getYsdj()));
+                data.add(String.valueOf(cgjhxqList.get(i).getCgsl() * cgjhxqList.get(i).getYsdj()));
+                dataList.add(data);
+            }
+        }
+
+
+        ExcelUtil.exportExcel("", titleList, dataList, response);
 
     }
 
