@@ -93,10 +93,10 @@ public class QysswjXxzxTYwLxwhServiceImpl implements QysswjXxzxTYwLxwhService {
         return lxwhList;
     }
 
-    public int getCount() {
+    public int getCount(String lxmc) {
         int countNum = 0;
         try {
-            countNum = qysswjXxzxTYwLxwhDao.queryCount();
+            countNum = qysswjXxzxTYwLxwhDao.queryCount(lxmc);
         } catch (Exception e) {
             e.printStackTrace();
         }

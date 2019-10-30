@@ -16,7 +16,6 @@ import java.util.List;
 public interface QysswjXxzxTYwLxwhMapper {
 
 
-
     List<QysswjXxzxTYwLxwh> selectAllLxwh(@Param ("lxmc") String lxmc,
                                           @Param ("pageNum") int pageNum, @Param ("pageSize") int pageSize);
 
@@ -35,5 +34,5 @@ public interface QysswjXxzxTYwLxwhMapper {
      */
     List<QysswjXxzxTYwLxwh> selectAllZyLxwh();
 
-    int queryCount();
+    int queryCount(@Param ("lxmc") String lxmc);
 }

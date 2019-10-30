@@ -62,6 +62,24 @@ public class QysswjXxzxTYwXhwhController {
     }
 
 
+    @ApiOperation (value = "获取所有在用型号的数据量 ")
+    @ApiResponse (code = 400, message = "参数没有填好", response = String.class)
+    @RequestMapping (value = "/getCount", method = RequestMethod.POST)
+    @ResponseBody
+    public RestResponse getCount(@RequestParam(required = false) String lxid,
+                                 @RequestParam(required = false) String ppid,
+                                 @RequestParam(required = false) String xhmc) {
+
+        int countNum = qysswjXxzxTYwXhwhService.getCount(lxid,ppid,xhmc);
+        if (countNum >= 0) {
+            return RestResponse.success(countNum);
+        } else {
+            return RestResponse.failed(ApiReturnCodeEnum.saveFail);
+
+        }
+
+    }
+
     @ApiOperation(value = "新增后保存", notes = "返回字符串，成功返回success，失败返回error")
     @ApiImplicitParams({
 
@@ -175,20 +193,6 @@ public class QysswjXxzxTYwXhwhController {
     }
 
 
-    @ApiOperation (value = "获取所有在用型号的数据量 ")
-    @ApiResponse (code = 400, message = "参数没有填好", response = String.class)
-    @RequestMapping (value = "/getCount", method = RequestMethod.POST)
-    @ResponseBody
-    public RestResponse getCount() {
 
-        int countNum = qysswjXxzxTYwXhwhService.getCount();
-        if (countNum >= 0) {
-            return RestResponse.success(countNum);
-        } else {
-            return RestResponse.failed(ApiReturnCodeEnum.saveFail);
-
-        }
-
-    }
 
 }

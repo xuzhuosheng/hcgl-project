@@ -52,10 +52,10 @@ public class QysswjXxzxTYwCgjhServiceImpl implements QysswjXxzxTYwCgjhService {
     }
 
     @Override
-    public int getCount() {
+    public int getCount(String cgjhmc, String qsrq, String zzrq) {
         int countNum = 0;
         try {
-            countNum = qysswjXxzxTYwCgjhDao.queryCount();
+            countNum = qysswjXxzxTYwCgjhDao.queryCount(cgjhmc, qsrq, zzrq);
         } catch (Exception e) {
             e.printStackTrace();
         }

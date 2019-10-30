@@ -61,6 +61,22 @@ public class QysswjXxzxTYwLxwhController extends AbstractRestController {
 
     }
 
+    @ApiOperation (value = "获取所有在用类型的数据量 ")
+    @ApiResponse (code = 400, message = "参数没有填好", response = String.class)
+    @RequestMapping (value = "/getCount", method = RequestMethod.POST)
+    @ResponseBody
+    public RestResponse getCount(@RequestParam (required = false) String lxmc) {
+
+        int countNum = qysswjXxzxTYwLxwhService.getCount(lxmc);
+        if (countNum >= 0) {
+            return RestResponse.success(countNum);
+        } else {
+            return RestResponse.failed(ApiReturnCodeEnum.saveFail);
+
+        }
+
+    }
+
 
     @ApiOperation (value = "根据id获取类型", notes = "返回QysswjXxzxTYwLxwh对象")
     @ApiImplicitParams ({
@@ -161,21 +177,7 @@ public class QysswjXxzxTYwLxwhController extends AbstractRestController {
     }
 
 
-    @ApiOperation (value = "获取所有在用类型的数据量 ")
-    @ApiResponse (code = 400, message = "参数没有填好", response = String.class)
-    @RequestMapping (value = "/getCount", method = RequestMethod.POST)
-    @ResponseBody
-    public RestResponse getCount() {
 
-        int countNum = qysswjXxzxTYwLxwhService.getCount();
-        if (countNum >= 0) {
-            return RestResponse.success(countNum);
-        } else {
-            return RestResponse.failed(ApiReturnCodeEnum.saveFail);
-
-        }
-
-    }
 
 
 }

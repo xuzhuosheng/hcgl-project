@@ -40,6 +40,29 @@
 
     </select>
 
+
+
+    <select id="queryCount" resultType="int">
+        select
+        count(*)
+        from qysswj_xxzx_t_yw_cgjh
+        <where>
+            1=1
+            <if test="cgjhmc!=null and cgjhmc!=''">
+                and cgjhmc like '%${cgjhmc}%'
+            </if>
+            <if test="qsrq!=null and qsrq!='' ">
+                and createtime &gt;= #{qsrq}
+
+            </if>
+            <if test="zzrq!=null ">
+                and createtime &lt;= #{qsrq}
+            </if>
+        </where>
+    </select>
+
+
+
     <!--查询指定行数据-->
     <!--<select id="queryAllByLimit" resultMap="QysswjXxzxTYwCgjhMap">-->
     <!--select-->
@@ -97,14 +120,6 @@
     </update>
 
 
-    <select id="queryCount" resultType="int">
-        select
-        count(*)
-        from qysswj_xxzx_t_yw_cgjh
-        <where>
-            1=1
-        </where>
-    </select>
 
     <!--&lt;!&ndash;通过主键删除&ndash;&gt;-->
     <!--<delete id="deleteById">-->

@@ -78,10 +78,10 @@ public class QysswjXxzxTYwLbwhServiceImpl implements QysswjXxzxTYwLbwhService {
 
 
     @Override
-    public int getCount() {
+    public int getCount(String lxid, String ppid, String xhid, String lbmc, Integer kcl) {
         int countNum = 0;
         try {
-            countNum = qysswjXxzxTYwLbwhDao.queryCount();
+            countNum = qysswjXxzxTYwLbwhDao.queryCount(lxid, ppid, xhid, lbmc, kcl);
         } catch (Exception e) {
             e.printStackTrace();
         }

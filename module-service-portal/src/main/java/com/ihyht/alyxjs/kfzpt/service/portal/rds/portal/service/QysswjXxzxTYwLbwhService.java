@@ -25,7 +25,7 @@ public interface QysswjXxzxTYwLbwhService {
 
     List<QysswjXxzxTYwLbwh> getLbwhListAuto();
 
-    int getCount();
+    int getCount(String lxid, String ppid, String xhid, String lbmc, Integer kcl);
 
     boolean editYwLbwh(String id, String xhid, String xhmc, String lbmc, Integer fz, Double ysdj, Integer kcl, String bz);
 

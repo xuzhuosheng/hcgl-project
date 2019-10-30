@@ -15,7 +15,7 @@ import java.util.List;
  * @author makejava
  * @since 2019-09-21 10:01:41
  */
-@Service("qysswjXxzxTYwPpwhService")
+@Service ("qysswjXxzxTYwPpwhService")
 public class QysswjXxzxTYwPpwhServiceImpl implements QysswjXxzxTYwPpwhService {
     @Resource
     private QysswjXxzxTYwPpwhMapper qysswjXxzxTYwPpwhDao;
@@ -95,10 +95,10 @@ public class QysswjXxzxTYwPpwhServiceImpl implements QysswjXxzxTYwPpwhService {
     }
 
     @Override
-    public int getCount() {
+    public int getCount(String lxid, String ppmc) {
         int countNum = 0;
         try {
-            countNum = qysswjXxzxTYwPpwhDao.queryCount();
+            countNum = qysswjXxzxTYwPpwhDao.queryCount(lxid, ppmc);
         } catch (Exception e) {
             e.printStackTrace();
         }

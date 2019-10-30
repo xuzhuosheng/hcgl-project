@@ -65,6 +65,26 @@ public class QysswjXxzxTYwLbwhController {
     }
 
 
+    @ApiOperation (value = "获取所有在用类别的数据量 ")
+    @ApiResponse (code = 400, message = "参数没有填好", response = String.class)
+    @RequestMapping (value = "/getCount", method = RequestMethod.POST)
+    @ResponseBody
+    public RestResponse getCount(@RequestParam (required = false) String lxid,
+                                 @RequestParam (required = false) String ppid,
+                                 @RequestParam (required = false) String xhid,
+                                 @RequestParam (required = false) String lbmc,
+                                 @RequestParam (required = false) Integer kcl) {
+
+        int countNum = qysswjXxzxTYwLbwhService.getCount(lxid, ppid, xhid, lbmc, kcl);
+        if (countNum >= 0) {
+            return RestResponse.success(countNum);
+        } else {
+            return RestResponse.failed(ApiReturnCodeEnum.saveFail);
+
+        }
+
+    }
+
     @ApiOperation (value = "新增保存", notes = "返回字符串，成功返回success，失败返回error")
     @ApiImplicitParams ({
             @ApiImplicitParam (name = "xhid", value = "型号id", paramType = "query", required = true),
@@ -165,22 +185,6 @@ public class QysswjXxzxTYwLbwhController {
 
     }
 
-
-    @ApiOperation (value = "获取所有在用类别的数据量 ")
-    @ApiResponse (code = 400, message = "参数没有填好", response = String.class)
-    @RequestMapping (value = "/getCount", method = RequestMethod.POST)
-    @ResponseBody
-    public RestResponse getCount() {
-
-        int countNum = qysswjXxzxTYwLbwhService.getCount();
-        if (countNum >= 0) {
-            return RestResponse.success(countNum);
-        } else {
-            return RestResponse.failed(ApiReturnCodeEnum.saveFail);
-
-        }
-
-    }
 
     @ApiOperation (value = "同时根据多个id获取数据")
     @ApiImplicitParams ({

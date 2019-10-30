@@ -74,6 +74,24 @@ public class QysswjXxzxTYwCgjhController {
     }
 
 
+    @ApiOperation (value = "获取所有采购计划的数据量 ")
+    @ApiResponse (code = 400, message = "参数没有填好", response = String.class)
+    @RequestMapping (value = "/getCount", method = RequestMethod.POST)
+    @ResponseBody
+    public RestResponse getCount(@RequestParam (required = false) String cgjhmc,
+                                 @RequestParam (required = false) String qsrq,
+                                 @RequestParam (required = false) String zzrq) {
+
+        int countNum = qysswjXxzxTYwCgjhService.getCount(cgjhmc,qsrq,zzrq);
+        if (countNum >= 0) {
+            return RestResponse.success(countNum);
+        } else {
+            return RestResponse.failed(ApiReturnCodeEnum.saveFail);
+
+        }
+
+    }
+
     @ApiOperation (value = "智能生成采购计划", notes = "获取数据库中库存量少于阀值的数据")
     @RequestMapping (value = "/createCgjh", method = RequestMethod.POST)
     @ResponseBody
@@ -138,21 +156,7 @@ public class QysswjXxzxTYwCgjhController {
     }
 
 
-    @ApiOperation (value = "获取所有采购计划的数据量 ")
-    @ApiResponse (code = 400, message = "参数没有填好", response = String.class)
-    @RequestMapping (value = "/getCount", method = RequestMethod.POST)
-    @ResponseBody
-    public RestResponse getCount() {
 
-        int countNum = qysswjXxzxTYwCgjhService.getCount();
-        if (countNum >= 0) {
-            return RestResponse.success(countNum);
-        } else {
-            return RestResponse.failed(ApiReturnCodeEnum.saveFail);
-
-        }
-
-    }
 
 
     @ApiOperation (value = "更新采购计划的状态 ")

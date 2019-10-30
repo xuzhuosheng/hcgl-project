@@ -17,7 +17,7 @@ public interface QysswjXxzxTYwCgjhService {
 
     int addCgjh(QysswjXxzxTYwCgjh qysswjXxzxTYwCgjh);
 
-    int getCount();
+    int getCount(String cgjhmc, String qsrq, String zzrq);
 
     boolean editCgjhZt(String id);
 }

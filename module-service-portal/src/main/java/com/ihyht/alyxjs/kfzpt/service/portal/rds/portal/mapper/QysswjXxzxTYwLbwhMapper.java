@@ -32,7 +32,8 @@ public interface QysswjXxzxTYwLbwhMapper {
 
     List<QysswjXxzxTYwLbwh> queryLbwhListAuto();
 
-    int queryCount();
+    int queryCount(@Param ("lxid") String lxid, @Param ("ppid") String ppid, @Param ("xhid") String xhid, @Param (
+            "lbmc") String lbmc, @Param ("kcl") Integer kcl);
 
     void updateYwLbwh(@Param ("id") String id, @Param ("xhid") String xhid, @Param ("xhmc") String xhmc,
                       @Param ("lbmc") String lbmc, @Param ("fz") Integer fz, @Param ("ysdj") Double ysdj,

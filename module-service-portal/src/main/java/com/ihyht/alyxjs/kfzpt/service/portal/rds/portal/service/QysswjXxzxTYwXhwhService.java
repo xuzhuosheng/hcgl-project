@@ -25,5 +25,5 @@ public interface QysswjXxzxTYwXhwhService {
 
     List<QysswjXxzxTYwXhwh> getXhwhListByPpid(String ppid);
 
-    int getCount();
+    int getCount(String lxid, String ppid, String xhmc);
 }
