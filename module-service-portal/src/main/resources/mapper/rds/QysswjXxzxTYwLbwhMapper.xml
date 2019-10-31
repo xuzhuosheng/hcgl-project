@@ -36,7 +36,7 @@
         lx.id lxid,lx.lxmc lxmc,pp.id ppid,pp.ppmc ppmc,xh.id xhid,xh.xhmc xhmc,
         lb.id , lb.lbmc, lb.ysdj, lb.kcl,lb.fz,
         lb.createtime,
-        lb.zt, lb.bz
+        lb.zt, lb.bz,lb.fz
         from qysswj_xxzx_t_yw_lxwh lx
         left join qysswj_xxzx_t_yw_ppwh pp on lx.id=pp.lxid
         left join qysswj_xxzx_t_yw_xhwh xh on pp.id=xh.ppid
@@ -151,7 +151,7 @@
         lx.id lxid,lx.lxmc lxmc,pp.id ppid,pp.ppmc ppmc,xh.id xhid,xh.xhmc xhmc,
         lb.id , lb.lbmc, lb.ysdj, lb.kcl,
         lb.createtime,
-        lb.zt, lb.bz,
+        lb.zt, lb.bz,lb.fz,
         0 cgsl
         from qysswj_xxzx_t_yw_lxwh lx
         left join qysswj_xxzx_t_yw_ppwh pp on lx.id=pp.lxid
@@ -172,7 +172,7 @@
         lx.id lxid,lx.lxmc lxmc,pp.id ppid,pp.ppmc ppmc,xh.id xhid,xh.xhmc xhmc,
         lb.id , lb.lbmc, lb.ysdj, lb.kcl,
         lb.createtime,
-        lb.zt, lb.bz,
+        lb.zt, lb.bz,lb.fz,
         0 cgsl
         from qysswj_xxzx_t_yw_lxwh lx
         left join qysswj_xxzx_t_yw_ppwh pp on lx.id=pp.lxid

@@ -29,8 +29,8 @@
                 and createtime &gt;= #{qsrq}
 
             </if>
-            <if test="zzrq!=null ">
-                and createtime &lt;= #{qsrq}
+            <if test="zzrq!=null and zzrq!='' ">
+                and createtime &lt;= #{zzrq}
             </if>
         </where>
         order by createtime desc
@@ -56,7 +56,7 @@
 
             </if>
             <if test="zzrq!=null ">
-                and createtime &lt;= #{qsrq}
+                and createtime &lt;= #{zzrq}
             </if>
         </where>
     </select>

@@ -16,7 +16,7 @@
     <!--查询所有记录-->
     <select id="selectAllPpwh" resultMap="QysswjXxzxTYwPpwhMap">
         select
-        pp.id, pp.ppmc, pp.lxid,pp.lxmc, pp.createtime, pp.zt, pp.bz
+        pp.id, pp.ppmc, lx.id,lx.lxmc, pp.createtime, pp.zt, pp.bz
         from qysswj_xxzx_t_yw_lxwh lx
         left join qysswj_xxzx_t_yw_ppwh pp on pp.lxid=lx.id
         <where>
@@ -75,7 +75,7 @@
     <!--根据类型id获取品牌-->
     <select id="selectAllPpwhByLxid" resultMap="QysswjXxzxTYwPpwhMap">
         select
-        pp.id, pp.ppmc, pp.lxid,pp.lxmc, pp.createtime, pp.zt, pp.bz
+        pp.id, pp.ppmc, lx.id lxid,lx.lxmc lxmc, pp.createtime, pp.zt, pp.bz
         from qysswj_xxzx_t_yw_lxwh lx
         left join qysswj_xxzx_t_yw_ppwh pp on pp.lxid=lx.id
         <where>
@@ -133,3 +133,4 @@
 
 
 </mapper>
+ 
