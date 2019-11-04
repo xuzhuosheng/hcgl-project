@@ -26,11 +26,11 @@ public class QysswjXxzxTYwLbwhServiceImpl implements QysswjXxzxTYwLbwhService {
     @Override
     public List<QysswjXxzxTYwLbwh> getYwLbwhList(String lxid, String ppid, String xhid, String lbmc, Integer kcl,
                                                  int pageNum,
-                                                 int pageSize) {
+                                                 int pageSize, Integer fz) {
         try {
             ywLbwhList = new ArrayList<>();
             ywLbwhList = qysswjXxzxTYwLbwhDao.selectAllYwLbwhList(lxid, ppid, xhid, lbmc, kcl, pageNum,
-                    pageSize);
+                    pageSize, fz);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -78,10 +78,10 @@ public class QysswjXxzxTYwLbwhServiceImpl implements QysswjXxzxTYwLbwhService {
 
 
     @Override
-    public int getCount(String lxid, String ppid, String xhid, String lbmc, Integer kcl) {
+    public int getCount(String lxid, String ppid, String xhid, String lbmc, Integer kcl, Integer fz) {
         int countNum = 0;
         try {
-            countNum = qysswjXxzxTYwLbwhDao.queryCount(lxid, ppid, xhid, lbmc, kcl);
+            countNum = qysswjXxzxTYwLbwhDao.queryCount(lxid, ppid, xhid, lbmc, kcl, fz);
         } catch (Exception e) {
             e.printStackTrace();
         }

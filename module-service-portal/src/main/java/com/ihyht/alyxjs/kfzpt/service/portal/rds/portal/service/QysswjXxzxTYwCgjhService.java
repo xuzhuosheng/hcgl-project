@@ -13,7 +13,7 @@ import java.util.List;
 public interface QysswjXxzxTYwCgjhService {
 
 
-    List<QysswjXxzxTYwCgjh> getYwLbwhList(String cgjhmc, String qsrq, String zzrq, int pageNum, int pageSize);
+    List<QysswjXxzxTYwCgjh> getCgjhList(String cgjhmc, String qsrq, String zzrq, int pageNum, int pageSize);
 
     int addCgjh(QysswjXxzxTYwCgjh qysswjXxzxTYwCgjh);
 

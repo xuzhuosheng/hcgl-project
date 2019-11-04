@@ -49,8 +49,8 @@ public class ExcelUtil {
             }
         }
 
-        HSSFRow row3 = sheet.createRow(dataList.size());
-        HSSFCell cell3 = row3.createCell(dataList.get(0).size() - 1);
+        HSSFRow row3 = sheet.createRow(dataList.size()+1);
+        HSSFCell cell3 = row3.createCell(dataList.get(0).size()-1);
 
         cell3.setCellValue(sum);
 

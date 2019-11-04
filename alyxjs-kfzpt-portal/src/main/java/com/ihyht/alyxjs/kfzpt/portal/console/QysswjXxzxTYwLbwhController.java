@@ -44,6 +44,7 @@ public class QysswjXxzxTYwLbwhController {
             @ApiImplicitParam (name = "xhid", value = "型号id，下拉获取", paramType = "query", required = false),
             @ApiImplicitParam (name = "lbmc", value = "类别名称", paramType = "query", required = false),
             @ApiImplicitParam (name = "kcl", value = "数量", paramType = "query", required = false),
+            @ApiImplicitParam (name = "fz", value = "阀值", paramType = "query", required = false),
             @ApiImplicitParam (name = "pageNum", value = "页码", paramType = "query", required = true)
     })
     @ApiResponse (code = 400, message = "参数没有填好", response = String.class)
@@ -54,9 +55,10 @@ public class QysswjXxzxTYwLbwhController {
                                       @RequestParam (required = false) String xhid,
                                       @RequestParam (required = false) String lbmc,
                                       @RequestParam (required = false) Integer kcl,
+                                      @RequestParam (required = false) Integer fz,
                                       @RequestParam (required = true) int pageNum) {
         List<QysswjXxzxTYwLbwh> ywLbwhList = qysswjXxzxTYwLbwhService.getYwLbwhList(lxid, ppid, xhid, lbmc, kcl,
-                pageNum, pageSize);
+                pageNum, pageSize,fz);
         if (ywLbwhList != null) {
             return RestResponse.success(ywLbwhList);
         } else {
@@ -73,9 +75,10 @@ public class QysswjXxzxTYwLbwhController {
                                  @RequestParam (required = false) String ppid,
                                  @RequestParam (required = false) String xhid,
                                  @RequestParam (required = false) String lbmc,
-                                 @RequestParam (required = false) Integer kcl) {
+                                 @RequestParam (required = false) Integer kcl,
+                                 @RequestParam (required = false) Integer fz) {
 
-        int countNum = qysswjXxzxTYwLbwhService.getCount(lxid, ppid, xhid, lbmc, kcl);
+        int countNum = qysswjXxzxTYwLbwhService.getCount(lxid, ppid, xhid, lbmc, kcl,fz);
         if (countNum >= 0) {
             return RestResponse.success(countNum);
         } else {

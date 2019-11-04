@@ -15,7 +15,7 @@ import java.util.List;
 public interface QysswjXxzxTYwCgjhMapper {
 
 
-    List<QysswjXxzxTYwCgjh> queryYwLbwh(@Param ("cgjhmc") String cgjhmc, @Param ("qsrq") String qsrq,
+    List<QysswjXxzxTYwCgjh> queryCgjh(@Param ("cgjhmc") String cgjhmc, @Param ("qsrq") String qsrq,
                                         @Param ("zzrq") String zzrq, @Param ("pageNum") int pageNum,
                                         @Param ("pageSize") int pageSize);
 

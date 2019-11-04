@@ -16,8 +16,8 @@ public interface QysswjXxzxTYwLbwhMapper {
 
     List<QysswjXxzxTYwLbwh> selectAllYwLbwhList(@Param ("lxid") String lxid, @Param ("ppid") String ppid,
                                                 @Param ("xhid") String xhid, @Param ("lbmc") String lbmc,
-                                                @Param ("kcl") Integer kcl, @Param ("pageNum") int pageNum, @Param (
-            "pageSize") int pageSize);
+                                                @Param ("kcl") Integer kcl, @Param ("pageNum") int pageNum,
+                                                @Param ("pageSize") int pageSize, @Param ("fz") Integer fz);
 
     void insertYwLbwh(@Param ("xhid") String xhid, @Param ("xhmc") String xhmc,
                       @Param ("lbmc") String lbmc, @Param ("fz") Integer fz,
@@ -32,8 +32,9 @@ public interface QysswjXxzxTYwLbwhMapper {
 
     List<QysswjXxzxTYwLbwh> queryLbwhListAuto();
 
-    int queryCount(@Param ("lxid") String lxid, @Param ("ppid") String ppid, @Param ("xhid") String xhid, @Param (
-            "lbmc") String lbmc, @Param ("kcl") Integer kcl);
+    int queryCount(@Param ("lxid") String lxid, @Param ("ppid") String ppid,
+                   @Param ("xhid") String xhid, @Param ("lbmc") String lbmc,
+                   @Param ("kcl") Integer kcl, @Param ("fz") Integer fz);
 
     void updateYwLbwh(@Param ("id") String id, @Param ("xhid") String xhid, @Param ("xhmc") String xhmc,
                       @Param ("lbmc") String lbmc, @Param ("fz") Integer fz, @Param ("ysdj") Double ysdj,

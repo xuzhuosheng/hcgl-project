@@ -22,10 +22,11 @@ public class QysswjXxzxTYwCgjhServiceImpl implements QysswjXxzxTYwCgjhService {
 
 
     @Override
-    public List<QysswjXxzxTYwCgjh> getYwLbwhList(String cgjhmc, String qsrq, String zzrq, int pageNum, int pageSize) {
+    public List<QysswjXxzxTYwCgjh> getCgjhList(String cgjhmc, String qsrq, String zzrq, int pageNum, int pageSize) {
+
         List<QysswjXxzxTYwCgjh> cgjhList = new ArrayList<>();
         try {
-            cgjhList = qysswjXxzxTYwCgjhDao.queryYwLbwh(cgjhmc, qsrq, zzrq, pageNum, pageSize);
+            cgjhList = qysswjXxzxTYwCgjhDao.queryCgjh(cgjhmc, qsrq, zzrq, pageNum, pageSize);
         } catch (Exception e) {
             e.printStackTrace();
         }

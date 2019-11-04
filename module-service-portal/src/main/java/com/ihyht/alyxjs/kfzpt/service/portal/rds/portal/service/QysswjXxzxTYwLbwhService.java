@@ -14,7 +14,7 @@ public interface QysswjXxzxTYwLbwhService {
 
 
     List<QysswjXxzxTYwLbwh> getYwLbwhList(String lxid, String ppid, String xhid, String lbmc, Integer kcl, int pageNum,
-                                          int pageSize);
+                                          int pageSize, Integer fz);
 
     boolean addYwLbwh(String xhid, String xhmc, String lbmc, int fz, Double ysdj, int kcl);
 
@@ -25,7 +25,7 @@ public interface QysswjXxzxTYwLbwhService {
 
     List<QysswjXxzxTYwLbwh> getLbwhListAuto();
 
-    int getCount(String lxid, String ppid, String xhid, String lbmc, Integer kcl);
+    int getCount(String lxid, String ppid, String xhid, String lbmc, Integer kcl, Integer fz);
 
     boolean editYwLbwh(String id, String xhid, String xhmc, String lbmc, Integer fz, Double ysdj, Integer kcl, String bz);
 

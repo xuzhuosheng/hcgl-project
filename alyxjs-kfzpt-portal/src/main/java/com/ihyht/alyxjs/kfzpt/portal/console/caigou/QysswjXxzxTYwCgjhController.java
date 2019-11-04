@@ -62,8 +62,13 @@ public class QysswjXxzxTYwCgjhController {
                                     @RequestParam (required = false) String zzrq,
                                     @RequestParam (required = true) int pageNum
     ) {
-        System.out.println(qsrq);
-        List<QysswjXxzxTYwCgjh> cgjhList = qysswjXxzxTYwCgjhService.getYwLbwhList(cgjhmc, qsrq, zzrq, pageNum,
+        if (!"".equals(qsrq) && qsrq != null) {
+            qsrq = qsrq + " 00:00:00";
+        }
+        if (!"".equals(zzrq) && zzrq != null) {
+            zzrq = zzrq + " 23:59:59";
+        }
+        List<QysswjXxzxTYwCgjh> cgjhList = qysswjXxzxTYwCgjhService.getCgjhList(cgjhmc, qsrq, zzrq, pageNum,
                 pageSize);
         if (cgjhList != null) {
             return RestResponse.success(cgjhList);
@@ -82,7 +87,14 @@ public class QysswjXxzxTYwCgjhController {
                                  @RequestParam (required = false) String qsrq,
                                  @RequestParam (required = false) String zzrq) {
 
-        int countNum = qysswjXxzxTYwCgjhService.getCount(cgjhmc,qsrq,zzrq);
+        if (!"".equals(qsrq) && qsrq != null) {
+            qsrq = qsrq + " 0:0:0";
+        }
+        if (!"".equals(zzrq) && zzrq != null) {
+            zzrq = zzrq + " 23:59:59";
+        }
+
+        int countNum = qysswjXxzxTYwCgjhService.getCount(cgjhmc, qsrq, zzrq);
         if (countNum >= 0) {
             return RestResponse.success(countNum);
         } else {
@@ -156,9 +168,6 @@ public class QysswjXxzxTYwCgjhController {
     }
 
 
-
-
-
     @ApiOperation (value = "更新采购计划的状态 ")
     @ApiResponse (code = 400, message = "参数没有填好", response = String.class)
     @RequestMapping (value = "/editCgjhZt", method = RequestMethod.POST)
@@ -220,7 +229,7 @@ public class QysswjXxzxTYwCgjhController {
         if (cgjhxqList != null) {
             for(int i = 0; i < cgjhxqList.size(); i++) {
                 data = new ArrayList<>();
-                data.add(cgjhxqList.get(i).getLbmc());
+                data.add(cgjhxqList.get(i).getLxmc());
                 data.add(cgjhxqList.get(i).getPpmc());
                 data.add(cgjhxqList.get(i).getXhmc());
                 data.add(cgjhxqList.get(i).getLbmc());

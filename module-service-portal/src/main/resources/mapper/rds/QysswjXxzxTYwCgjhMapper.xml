@@ -16,7 +16,7 @@
 
     <!--String cgjhmc, Date qsrq, Date zzrq, int pageNum, int pageSize-->
     <!--查询单个-->
-    <select id="queryYwLbwh" resultMap="QysswjXxzxTYwCgjhMap">
+    <select id="queryCgjh" resultMap="QysswjXxzxTYwCgjhMap">
         select
         id, cgjhmc, createtime,endtime, creater, zt, bz
         from qysswj_xxzx_t_yw_cgjh
@@ -26,11 +26,10 @@
                 and cgjhmc like '%${cgjhmc}%'
             </if>
             <if test="qsrq!=null and qsrq!='' ">
-                and createtime &gt;= #{qsrq}
-
+                and createtime &gt;='${qsrq}'
             </if>
             <if test="zzrq!=null and zzrq!='' ">
-                and createtime &lt;= #{zzrq}
+                and createtime &lt;= '${zzrq}'
             </if>
         </where>
         order by createtime desc
@@ -52,11 +51,11 @@
                 and cgjhmc like '%${cgjhmc}%'
             </if>
             <if test="qsrq!=null and qsrq!='' ">
-                and createtime &gt;= #{qsrq}
+                and createtime &gt;= '${qsrq}'
 
             </if>
-            <if test="zzrq!=null ">
-                and createtime &lt;= #{zzrq}
+            <if test="zzrq!=null and zzrq!='' ">
+                and createtime &lt;= '${zzrq}'
             </if>
         </where>
     </select>

@@ -56,7 +56,10 @@
                 and xh.id=#{xhid}
             </if>
             <if test="kcl!=null  ">
-                and lb.kcl &lt; #{kcl}
+                and lb.kcl &lt;= #{kcl}
+            </if>
+            <if test="fz!=null">
+                and (lb.kcl- lb.fz)&lt;= #{fz}
             </if>
             <if test="lbmc!=null and lbmc!='' ">
                 and lb.lbmc like '%${lbmc}%'
@@ -91,7 +94,10 @@
                 and xh.id=#{xhid}
             </if>
             <if test="kcl!=null  ">
-                and lb.kcl &lt; #{kcl}
+                and lb.kcl &lt;= #{kcl}
+            </if>
+            <if test="fz!=null">
+                and (lb.kcl- lb.fz)&lt;= #{fz}
             </if>
             <if test="lbmc!=null and lbmc!='' ">
                 and lb.lbmc like '%${lbmc}%'
