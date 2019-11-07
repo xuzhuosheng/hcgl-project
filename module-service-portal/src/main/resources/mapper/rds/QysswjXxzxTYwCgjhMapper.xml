@@ -7,6 +7,10 @@
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="cgjhmc" column="cgjhmc" jdbcType="VARCHAR"/>
         <result property="createtime" column="createtime" jdbcType="TIMESTAMP"/>
+
+        <result property="zsl" column="zsl" jdbcType="VARCHAR"/>
+        <result property="zje" column="zje" jdbcType="VARCHAR"/>
+
         <result property="endtime" column="endtime" jdbcType="TIMESTAMP"/>
         <result property="creater" column="creater" jdbcType="VARCHAR"/>
         <result property="zt" column="zt" jdbcType="VARCHAR"/>
@@ -18,8 +22,9 @@
     <!--查询单个-->
     <select id="queryCgjh" resultMap="QysswjXxzxTYwCgjhMap">
         select
-        id, cgjhmc, createtime,endtime, creater, zt, bz
-        from qysswj_xxzx_t_yw_cgjh
+        c1.id, c1.cgjhmc, c1.createtime,c1.endtime, c1.creater, c1.zt, c1.bz,sum(c2.cgsl) zsl,sum(c2.cgsl*c2.ysdj) zje
+        from qysswj_xxzx_t_yw_cgjh c1
+        left join qysswj_xxzx_t_yw_cgjhxq c2 on c1.id=c2.cgjhid
         <where>
             1=1
             <if test="cgjhmc!=null and cgjhmc!=''">
@@ -32,6 +37,7 @@
                 and createtime &lt;= '${zzrq}'
             </if>
         </where>
+        group by id
         order by createtime desc
         <!--<if test="pageNum>0">-->
         <!--limit ${(pageNum-1)*pageSize},${pageNum*pageSize}-->
